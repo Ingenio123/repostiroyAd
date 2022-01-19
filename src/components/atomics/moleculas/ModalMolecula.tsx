@@ -7,10 +7,23 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useToast,
 } from "@chakra-ui/react";
-import { FC } from "react";
+
+import Toasts from "./ToastMoleculat";
 
 export const ModalMolecula = ({ isOpen, onClose }: any) => {
+  const toast = useToast();
+  const handleAccept = () => {
+    toast({
+      title: "Delete Success",
+      description: "Teacher delete successfully",
+      status: "success",
+      duration: 1500,
+      isClosable: true,
+    });
+    return onClose();
+  };
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -24,7 +37,7 @@ export const ModalMolecula = ({ isOpen, onClose }: any) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="red" mr={3} onClick={onClose}>
+          <Button colorScheme="red" mr={3} onClick={() => handleAccept()}>
             Accept
           </Button>
           <Button variant="ghost" onClick={onClose}>
@@ -32,6 +45,7 @@ export const ModalMolecula = ({ isOpen, onClose }: any) => {
           </Button>
         </ModalFooter>
       </ModalContent>
+      <Toasts />
     </Modal>
   );
 };
