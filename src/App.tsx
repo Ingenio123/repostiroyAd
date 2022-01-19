@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from "react";
-import { Stack, Text } from "@chakra-ui/react";
+import { FC } from "react";
 import Layout from "./components/Layout";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Admin from "./screens/Admin";
 import Login from "./screens/Login";
 import AddTeacher from "./screens/Admin/Teacher";
 import { PrivateRoute } from "./routes/PrivateRoute";
+import UpdateTeacher from "./screens/Admin/UpdateTeacher";
 
 //
 const App: FC = () => {
@@ -23,6 +23,12 @@ const App: FC = () => {
           exact
           path="/admin/teacher"
           component={AddTeacher}
+          isAuthenticated={true}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/updateteacher"
+          component={UpdateTeacher}
           isAuthenticated={true}
         />
       </Switch>

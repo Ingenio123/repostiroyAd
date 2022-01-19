@@ -1,14 +1,30 @@
-import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { BoxAtom } from "../atomo/Card";
 import { FlexAtom } from "../atomo/Flex";
 import { StackAtom } from "../atomo/Stack";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+import { ModalMolecula } from "../../../components/atomics/moleculas/ModalMolecula";
 
 export const CardTeacherOrganismo = ({ data }: any) => {
   const [State, setState] = useState<any>("");
+  const history = useHistory();
   const Dropdown = (index: any) => {
     if (index === State) return setState(null);
     return setState(index);
+  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleClick = () => {
+    history.push("/admin/updateteacher");
   };
 
   return (
@@ -56,6 +72,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                       size={"sm"}
                       bg="green.500"
                       colorScheme="green"
+                      onClick={() => handleClick()}
                     >
                       Update
                     </Button>
@@ -66,6 +83,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                       bg="red.500"
                       colorScheme="red"
                       ml="20px"
+                      onClick={() => onOpen()}
                     >
                       Delete
                     </Button>
@@ -76,6 +94,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
           );
         })}
       </Box>
+      <ModalMolecula isOpen={isOpen} onClose={onClose} />
       <Box w="30%" h="40px" bg="pink.100">
         3
       </Box>
