@@ -6,6 +6,7 @@ class Board implements ITeacherEntity {
   readonly _description: string;
   readonly _interests: string;
   readonly _profBackground: string;
+  readonly _imgUrl: string;
 
   constructor(params: ITeacherData) {
     this._name = params.name;
@@ -13,6 +14,7 @@ class Board implements ITeacherEntity {
     this._description = params.description;
     this._interests = params.interests;
     this._profBackground = params.profBackground;
+    this._imgUrl = params.imgUrl;
   }
 
   get name() {
@@ -33,6 +35,9 @@ class Board implements ITeacherEntity {
 
   get profBackground() {
     return this._profBackground;
+  }
+  get imgUrl() {
+    return this._imgUrl;
   }
 }
 

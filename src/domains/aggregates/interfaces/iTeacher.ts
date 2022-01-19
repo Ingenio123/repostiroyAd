@@ -4,6 +4,7 @@ export interface ITeacherEntity {
   _description: string;
   _interests: string;
   _profBackground: string;
+  _imgUrl: string;
 }
 
 export interface ITeacherData {
@@ -13,4 +14,5 @@ export interface ITeacherData {
   description: string;
   interests: string;
   profBackground: string;
+  imgUrl: string;
 }

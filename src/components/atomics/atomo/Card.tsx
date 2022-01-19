@@ -3,7 +3,7 @@ import { FC } from "react";
 
 export const BoxAtom: FC = ({ children }) => {
   return (
-    <Box flexDirection={"row"} display={"flex"} width={"50%"}>
+    <Box flexDirection={"row"} display={"flex"} width={"80%"}>
       {children}
     </Box>
   );
