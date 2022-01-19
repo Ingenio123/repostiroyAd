@@ -13,6 +13,7 @@ export const FlexAtom: FC<IProps> = ({ children, mt }) => (
     borderColor="gray.200"
     borderRadius="md"
     justifyContent={"space-between"}
+    flexDirection={"column"}
   >
     {children}
   </Flex>

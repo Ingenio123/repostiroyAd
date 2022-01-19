@@ -2,9 +2,15 @@ import { Avatar, Box, Button, Text } from "@chakra-ui/react";
 import { BoxAtom } from "../atomo/Card";
 import { FlexAtom } from "../atomo/Flex";
 import { StackAtom } from "../atomo/Stack";
+import { useState } from "react";
 
 export const CardTeacherOrganismo = ({ data }: any) => {
-  console.log(data);
+  const [State, setState] = useState<any>("");
+  const Dropdown = (index: any) => {
+    if (index === State) return setState(null);
+    return setState(index);
+  };
+
   return (
     <StackAtom sapacign="24px">
       <Box w="70%">
@@ -15,17 +21,35 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                 <Avatar src={item._imgUrl} />
                 <div style={{ marginLeft: "10px" }}>
                   <Text fontWeight="bold">{item._name} </Text>
-                  <Text fontSize="sm">{item._eslogan}</Text>
+                  <Text fontSize="medium">{item._eslogan}</Text>
                 </div>
               </BoxAtom>
               <Button
                 alignSelf={"flex-end"}
                 justifySelf={"flex-end"}
                 size={"sm"}
-                bg="gray.300"
+                bg="brand.900"
+                colorScheme="brand"
+                onClick={() => Dropdown(index)}
               >
                 view more
               </Button>
+              {State === index && (
+                <Box borderTop="1px" borderColor="gray.200" p="2" mt="3">
+                  <Text fontWeight={"medium"}>Description</Text>
+                  <Text fontWeight={"normal"} mb="2">
+                    {item._description}
+                  </Text>
+                  <Text fontWeight={"medium"}>Profesional Background</Text>
+                  <Text fontWeight={"normal"} mb="2">
+                    {item._profBackground}
+                  </Text>
+                  <Text fontWeight={"medium"}>Interests</Text>
+                  <Text fontWeight={"normal"} mb="2">
+                    {item._interests}
+                  </Text>
+                </Box>
+              )}
             </FlexAtom>
           );
         })}

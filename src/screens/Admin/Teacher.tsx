@@ -5,6 +5,7 @@ import { CardTeacherOrganismo } from "../../components/atomics/organismos/CardTe
 
 function AddTeacher() {
   const [list, setList] = useteacherListState();
+  console.log(list);
   useEffect(() => {
     const asyncFnc = async () => {
       const data = await di.teacher.getTeachers();

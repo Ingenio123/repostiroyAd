@@ -7,10 +7,6 @@ const colors = {
     700: "#3e57a8",
     500: "#314584",
   },
-  gray: {
-    500: "#D4D4D8",
-  },
-  red: "red",
 };
 
 export default extendTheme({ colors });
