@@ -1,6 +1,6 @@
 import { ITeacherEntity, ITeacherData } from "./interfaces/iTeacher";
 
-class Board implements ITeacherEntity {
+class Teacher implements ITeacherEntity {
   private readonly _id: string;
   private readonly _name: string;
   private readonly _eslogan: string;
@@ -47,4 +47,4 @@ class Board implements ITeacherEntity {
   }
 }
 
-export default Board;
+export default Teacher;

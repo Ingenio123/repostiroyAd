@@ -1,10 +1,10 @@
 export interface IAddParams {
-  name: string;
-  LastName: string;
+  firstName: string;
+  lastName: string;
   eslogan: string;
   description: string;
   interests: string;
-  profBackground: string;
+  profesionalBackround: string;
 }
 
 export interface IAddtDTO {
@@ -25,12 +25,12 @@ class CommentDTO implements IAddtDTO {
   readonly profBackground: string;
 
   constructor(params: IAddParams) {
-    this.name = params.name;
-    this.LastName = params.LastName;
+    this.name = params.firstName;
+    this.LastName = params.lastName;
     this.eslogan = params.eslogan;
     this.description = params.description;
     this.interests = params.interests;
-    this.profBackground = params.profBackground;
+    this.profBackground = params.profesionalBackround;
   }
 }
 
