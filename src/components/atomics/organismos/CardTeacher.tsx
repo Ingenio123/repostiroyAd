@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
 import { BoxAtom } from "../atomo/Card";
 import { FlexAtom } from "../atomo/Flex";
 import { StackAtom } from "../atomo/Stack";
@@ -24,6 +24,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                   <Text fontSize="medium">{item._eslogan}</Text>
                 </div>
               </BoxAtom>
+
               <Button
                 alignSelf={"flex-end"}
                 justifySelf={"flex-end"}
@@ -48,6 +49,27 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                   <Text fontWeight={"normal"} mb="2">
                     {item._interests}
                   </Text>
+                  <Flex width="100%">
+                    <Button
+                      alignSelf={"flex-end"}
+                      justifySelf={"flex-end"}
+                      size={"sm"}
+                      bg="green.500"
+                      colorScheme="green"
+                    >
+                      Update
+                    </Button>
+                    <Button
+                      alignSelf={"flex-end"}
+                      justifySelf={"flex-end"}
+                      size={"sm"}
+                      bg="red.500"
+                      colorScheme="red"
+                      ml="20px"
+                    >
+                      Delete
+                    </Button>
+                  </Flex>
                 </Box>
               )}
             </FlexAtom>
