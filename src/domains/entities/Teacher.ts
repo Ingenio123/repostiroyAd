@@ -1,6 +1,8 @@
 import { IAddEntity, ITeacherData } from "./interfaces/iTeacher";
 
-class Comment implements IAddEntity {
+class Teacher implements IAddEntity {
+  // private readonly _id: string;
+  private readonly _id: string;
   private readonly _name: string;
   private readonly _fullname: string;
   private readonly _description: string;
@@ -9,12 +11,17 @@ class Comment implements IAddEntity {
   private readonly _interets: string;
 
   constructor(params: ITeacherData) {
+    this._id = params.id;
     this._name = params.name;
     this._fullname = params.fullname;
     this._description = params.description;
     this._eslogan = params.eslogan;
     this._profBackground = params.profBackground;
     this._interets = params.interets;
+  }
+
+  get id() {
+    return this._id;
   }
 
   get name() {
@@ -41,4 +48,4 @@ class Comment implements IAddEntity {
   }
 }
 
-export default Comment;
+export default Teacher;

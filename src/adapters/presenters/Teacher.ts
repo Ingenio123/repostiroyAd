@@ -11,6 +11,10 @@ class TeacherPresenter implements ITeacherPresenter {
     return await this.useCases.getTeachers();
   }
 
+  async removeTeacher(id: string): Promise<Object> {
+    return await this.useCases.removeTeacher(id);
+  }
+
   insertTeacher(author: string, content: string): Promise<boolean> {
     return this.useCases.insertTeacher(author, content);
   }

@@ -1,10 +1,8 @@
 import { FormMolecula } from "../../components/atomics/moleculas/FormModelecula";
-import { FlexAtom } from "../../components/atomics/atomo/Flex";
-import { BoxImageMolecula } from "../../components/atomics/moleculas/BoxImage";
 import { Box, Flex } from "@chakra-ui/react";
 const UpdateTeacher = () => {
   return (
-    <Flex justifyContent={"center"} mt="2rem">
+    <Flex justifyContent={"center"} my="1rem">
       <Box
         display={"flex"}
         alignItems={"center"}
@@ -13,7 +11,7 @@ const UpdateTeacher = () => {
         borderRadius={"md"}
         p="2rem"
       >
-        <BoxImageMolecula urlImage="https://bit.ly/sage-adebayo" />
+        {/* <BoxImageMolecula urlImage="https://bit.ly/sage-adebayo" /> */}
         <FormMolecula />
       </Box>
     </Flex>

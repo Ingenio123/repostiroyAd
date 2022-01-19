@@ -15,16 +15,24 @@ import { useHistory } from "react-router-dom";
 import { ModalMolecula } from "../../../components/atomics/moleculas/ModalMolecula";
 
 export const CardTeacherOrganismo = ({ data }: any) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [State, setState] = useState<any>("");
+  const [id, setId] = useState<any>("");
+
   const history = useHistory();
+
   const Dropdown = (index: any) => {
     if (index === State) return setState(null);
     return setState(index);
   };
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleClick = () => {
-    history.push("/admin/updateteacher");
+    history.push("/admin/update/teacher");
+  };
+
+  const handleClickModal = (id: string) => {
+    setId(id);
+    return onOpen();
   };
 
   return (
@@ -34,10 +42,10 @@ export const CardTeacherOrganismo = ({ data }: any) => {
           return (
             <FlexAtom key={index} mt="20px">
               <BoxAtom>
-                <Avatar src={item._imgUrl} />
+                <Avatar src={item.imgUrl} />
                 <div style={{ marginLeft: "10px" }}>
-                  <Text fontWeight="bold">{item._name} </Text>
-                  <Text fontSize="medium">{item._eslogan}</Text>
+                  <Text fontWeight="bold">{item.name} </Text>
+                  <Text fontSize="medium">{item.eslogan}</Text>
                 </div>
               </BoxAtom>
 
@@ -55,15 +63,15 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                 <Box borderTop="1px" borderColor="gray.200" p="2" mt="3">
                   <Text fontWeight={"medium"}>Description</Text>
                   <Text fontWeight={"normal"} mb="2">
-                    {item._description}
+                    {item.description}
                   </Text>
                   <Text fontWeight={"medium"}>Profesional Background</Text>
                   <Text fontWeight={"normal"} mb="2">
-                    {item._profBackground}
+                    {item.profBackground}
                   </Text>
                   <Text fontWeight={"medium"}>Interests</Text>
                   <Text fontWeight={"normal"} mb="2">
-                    {item._interests}
+                    {item.interests}
                   </Text>
                   <Flex width="100%">
                     <Button
@@ -83,7 +91,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                       bg="red.500"
                       colorScheme="red"
                       ml="20px"
-                      onClick={() => onOpen()}
+                      onClick={() => handleClickModal(item.id)}
                     >
                       Delete
                     </Button>
@@ -94,7 +102,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
           );
         })}
       </Box>
-      <ModalMolecula isOpen={isOpen} onClose={onClose} />
+      <ModalMolecula isOpen={isOpen} id={id} onClose={onClose} />
       <Box w="30%" h="40px" bg="pink.100">
         3
       </Box>

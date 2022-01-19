@@ -11,10 +11,13 @@ import {
 } from "@chakra-ui/react";
 
 import Toasts from "./ToastMoleculat";
+import di from "../../../di";
 
-export const ModalMolecula = ({ isOpen, onClose }: any) => {
+export const ModalMolecula = ({ isOpen, onClose, id }: any) => {
   const toast = useToast();
-  const handleAccept = () => {
+
+  const handleAccept = async () => {
+    await di.teacher.removeTeacher(id);
     toast({
       title: "Delete Success",
       description: "Teacher delete successfully",

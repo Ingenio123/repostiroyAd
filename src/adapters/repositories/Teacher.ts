@@ -6,10 +6,6 @@ import TeacherDTO, {
   ITeacherParams,
 } from "../../domains/dto/teacherDTO";
 import Url from "../../envConfig";
-// import CommentDTO, {
-//   ICommentDTO,
-//   ICommentParams,
-// } from "@domains/dto/CommentDTO";
 
 import { IHttp } from "../infrastructures/interfaces/iHttp";
 
@@ -27,18 +23,14 @@ class TeacherRepository implements ITeacherRepository {
     );
   }
 
-  //   async getComments(): Promise<Array<ICommentDTO>> {
-  //     const response = await this.http.request({
-  //       method: "GET",
-  //       url: "http://localhost:7777/comments",
-  //     });
-
-  //     if (response?.comments) {
-  //       return response.comments.map(
-  //         (comment: ICommentParams) => new CommentDTO(comment)
-  //       );
-  //     }
-  //   }
+  async deleteTeacher(id: string): Promise<object> {
+    const response = await this.http.request({
+      method: "DELETE",
+      url: `${Url.apiUrl}/data/delete/teacher/${id}`,
+    });
+    console.log(response);
+    return response;
+  }
 
   insertTeacher(author: string, content: string): Promise<boolean> {
     return this.http.request({

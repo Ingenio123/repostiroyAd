@@ -1,4 +1,5 @@
 export interface IAddEntity {
+  id: string;
   name: string;
   fullname: string;
   description: string;
@@ -8,6 +9,7 @@ export interface IAddEntity {
 }
 
 export interface ITeacherData {
+  id: string;
   name: string;
   fullname: string;
   description: string;

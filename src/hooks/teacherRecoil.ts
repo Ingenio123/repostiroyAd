@@ -1,4 +1,3 @@
-// import { IBoardEntity } from "@domains/aggregates/interfaces/iBoard";
 import { ITeacherEntity } from "../domains/aggregates/interfaces/iTeacher";
 import {
   atom,
