@@ -1,9 +1,15 @@
 import { StackAtom } from "../../components/atomics/atomo/Stack";
+import { BoxImageMolecula } from "../../components/atomics/moleculas/BoxImage";
+import { FormOrganismo } from "../../components/atomics/organismos/FormOrganismo";
+import { ImageOrganismo } from "../../components/atomics/organismos/ImageOrganismo";
 
 export const CreateTeacher = () => {
   return (
     <StackAtom border="1px">
-      <h2>stack</h2>
+      <ImageOrganismo>
+        <BoxImageMolecula />
+      </ImageOrganismo>
+      <FormOrganismo />
     </StackAtom>
   );
 };

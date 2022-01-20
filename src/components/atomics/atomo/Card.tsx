@@ -1,9 +1,21 @@
 import { Box } from "@chakra-ui/react";
-import { FC } from "react";
+import { ReactNode } from "react";
 
-export const BoxAtom: FC = ({ children }) => {
+interface IProps {
+  children: ReactNode;
+  width?: string;
+  padding?: string;
+}
+
+export const BoxAtom = ({ width, children, padding, ...props }: IProps) => {
   return (
-    <Box flexDirection={"row"} display={"flex"} width={"80%"}>
+    <Box
+      flexDirection={"row"}
+      display={"flex"}
+      width={width || "80%"}
+      padding={padding || "1rem"}
+      {...props}
+    >
       {children}
     </Box>
   );
