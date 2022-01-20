@@ -9,13 +9,13 @@ export interface ITeacherParams {
 }
 
 export interface ITeacherDTO {
-  id: string;
+  id?: string;
   name: string;
   eslogan: string;
   description: string;
   interests: string;
   profBackground: string;
-  imgUrl: string;
+  imgUrl?: string;
 }
 
 class TeacherDTO implements ITeacherDTO {

@@ -45,6 +45,17 @@ class TeacherRepository implements ITeacherRepository {
       },
     });
   }
+  async updateTeacher(data: ITeacherDTO, id: string): Promise<Object> {
+    console.log("datoss", data);
+    return await this.http.request({
+      method: "PUT",
+      url: `${Url.apiUrl}/data/updateTeacher/${id}`,
+      body: data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 }
 
 export default TeacherRepository;

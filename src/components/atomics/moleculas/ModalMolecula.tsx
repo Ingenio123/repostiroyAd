@@ -12,14 +12,12 @@ import {
 
 import Toasts from "./ToastMoleculat";
 import di from "../../../di";
-import { useHistory } from "react-router-dom";
 
-export const ModalMolecula = ({ isOpen, onClose, id }: any) => {
+export const ModalMolecula = ({ isOpen, onClose, id, ...props }: any) => {
   const toast = useToast();
-  const history = useHistory();
   const handleAccept = async () => {
     await di.teacher.removeTeacher(id);
-    history.go(0);
+    props.handleDelete(id);
     toast({
       title: "Delete Success",
       description: "Teacher delete successfully",

@@ -6,43 +6,61 @@ import {
   Input,
   Textarea,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
 
-export const FormMolecula = () => {
-  const {
-    handleSubmit,
-    watch,
-    register,
-    formState: { errors },
-  } = useForm();
-  console.log(watch("example"));
+export const FormMolecula = ({ ...props }: any) => {
+  // console.log(watch("example"));
 
-  const onSubmit = (data: any) => console.log(data);
   return (
-    <Box textAlign="left" minWidth={"600px"} onSubmit={handleSubmit(onSubmit)}>
-      <form>
+    <Box textAlign="left" minWidth={"600px"}>
+      <form onSubmit={props.onSubmit}>
         <FormControl>
           <FormLabel>Name Teacher</FormLabel>
-          <Input type="email" placeholder="Enter name teacher" />
+          <Input
+            type="text"
+            placeholder="Enter name teacher"
+            value={props.NameTeacher}
+            onChange={(e) => props.setNameTeacher(e.target.value)}
+          />
         </FormControl>
         <FormControl>
           <FormLabel>Eslogan</FormLabel>
-          <Textarea placeholder="Here is a sample placeholder"></Textarea>
+          <Textarea
+            value={props.EsloganTeacher}
+            placeholder="Here is a sample placeholder"
+            onChange={(e) => props.setEsloganTeacher(e.target.value)}
+          ></Textarea>
         </FormControl>
         <FormControl>
           <FormLabel>Description</FormLabel>
-          <Textarea placeholder="Here is a sample placeholder"></Textarea>
+          <Textarea
+            value={props.DescriptionTeacher}
+            placeholder="Here is a sample placeholder"
+            onChange={(e) => props.setDescriptionTeacher(e.target.value)}
+          ></Textarea>
         </FormControl>
         <FormControl>
           <FormLabel>Profesional Background</FormLabel>
-          <Textarea placeholder="Here is a sample placeholder"></Textarea>
+          <Textarea
+            value={props.profBackgroundTeacher}
+            placeholder="Here is a sample placeholder"
+            onChange={(e) => props.setProfBackgroundTeacher(e.target.value)}
+          ></Textarea>
         </FormControl>
         <FormControl mb="1rem">
           <FormLabel>Interests</FormLabel>
-          <Textarea placeholder="Here is a sample placeholder"></Textarea>
+          <Textarea
+            value={props.InterestsTeacher}
+            placeholder="Here is a sample placeholder"
+            onChange={(e) => props.setInterestsTeacher(e.target.value)}
+          ></Textarea>
         </FormControl>
         <Box width={"100%"} display={"flex"} justifyContent={"center"}>
-          <Button colorScheme={"blue"} fontSize={"lg"} width="200px">
+          <Button
+            type="submit"
+            colorScheme={"blue"}
+            fontSize={"lg"}
+            width="200px"
+          >
             Submit
           </Button>
         </Box>

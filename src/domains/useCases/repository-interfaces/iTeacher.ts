@@ -5,4 +5,5 @@ export interface ITeacherRepository {
   getTeachers(): Promise<Array<ITeacherDTO>>;
   insertTeacher(author: string, content: string): Promise<boolean>;
   deleteTeacher(id: string): Promise<object>;
+  updateTeacher(data: ITeacherDTO, id: string): Promise<Object>;
 }

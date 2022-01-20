@@ -21,6 +21,9 @@ class TeacherUseCase implements ITeacherUseCases {
   insertTeacher(author: string, content: string): Promise<boolean> {
     return this.teacherRepo.insertTeacher(author, content);
   }
+  updateTeacher(data: ITeacherDTO, id: string): Promise<Object> {
+    return this.teacherRepo.updateTeacher(data, id);
+  }
 }
 
 export default TeacherUseCase;

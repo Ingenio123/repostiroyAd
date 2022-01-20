@@ -7,7 +7,7 @@ import {
   useSetRecoilState,
 } from "recoil";
 
-const teacherList = atom<Array<ITeacherEntity>>({
+export const teacherList = atom<Array<ITeacherEntity>>({
   key: "teacherList",
   default: [],
 });

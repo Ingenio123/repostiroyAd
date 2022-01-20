@@ -14,11 +14,10 @@ import { useHistory } from "react-router-dom";
 
 import { ModalMolecula } from "../../../components/atomics/moleculas/ModalMolecula";
 
-export const CardTeacherOrganismo = ({ data }: any) => {
+export const CardTeacherOrganismo = ({ data, ...props }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [State, setState] = useState<any>("");
   const [id, setId] = useState<any>("");
-
   const history = useHistory();
 
   const Dropdown = (index: any) => {
@@ -26,8 +25,8 @@ export const CardTeacherOrganismo = ({ data }: any) => {
     return setState(index);
   };
 
-  const handleClick = () => {
-    history.push("/admin/update/teacher");
+  const handleClick = (id: string) => {
+    history.push(`/admin/update/teacher/${id}`);
   };
 
   const handleClickModal = (id: string) => {
@@ -80,7 +79,7 @@ export const CardTeacherOrganismo = ({ data }: any) => {
                       size={"sm"}
                       bg="green.500"
                       colorScheme="green"
-                      onClick={() => handleClick()}
+                      onClick={() => handleClick(item.id)}
                     >
                       Update
                     </Button>
@@ -102,7 +101,12 @@ export const CardTeacherOrganismo = ({ data }: any) => {
           );
         })}
       </Box>
-      <ModalMolecula isOpen={isOpen} id={id} onClose={onClose} />
+      <ModalMolecula
+        handleDelete={props.handleDelete}
+        isOpen={isOpen}
+        id={id}
+        onClose={onClose}
+      />
       <Box w="30%" h="40px" bg="pink.100">
         3
       </Box>

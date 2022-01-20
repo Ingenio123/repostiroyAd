@@ -29,7 +29,7 @@ const App: FC = () => {
         {/* update */}
         <PrivateRoute
           exact
-          path="/admin/update/teacher"
+          path="/admin/update/teacher/:id"
           component={UpdateTeacher}
           isAuthenticated={true}
         />

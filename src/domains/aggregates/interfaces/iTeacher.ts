@@ -1,11 +1,11 @@
 export interface ITeacherEntity {
-  id: string;
+  id?: string;
   name: string;
   eslogan: string;
   description: string;
   interests: string;
   profBackground: string;
-  imgUrl: string;
+  imgUrl?: string;
 }
 
 export interface ITeacherData {
