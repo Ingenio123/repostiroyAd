@@ -16,7 +16,7 @@ export interface IAddtDTO {
   profBackground: string;
 }
 
-class CommentDTO implements IAddtDTO {
+class TeacherDTO implements IAddtDTO {
   readonly name: string;
   readonly LastName: string;
   readonly eslogan: string;
@@ -34,4 +34,4 @@ class CommentDTO implements IAddtDTO {
   }
 }
 
-export default CommentDTO;
+export default TeacherDTO;

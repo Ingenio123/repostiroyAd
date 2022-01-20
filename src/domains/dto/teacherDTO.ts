@@ -16,6 +16,7 @@ export interface ITeacherDTO {
   interests: string;
   profBackground: string;
   imgUrl?: string;
+  hoobies?: string;
 }
 
 class TeacherDTO implements ITeacherDTO {

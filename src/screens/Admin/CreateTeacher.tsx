@@ -1,3 +1,9 @@
+import { StackAtom } from "../../components/atomics/atomo/Stack";
+
 export const CreateTeacher = () => {
-  return <h2>Create Teacher</h2>;
+  return (
+    <StackAtom border="1px">
+      <h2>stack</h2>
+    </StackAtom>
+  );
 };
