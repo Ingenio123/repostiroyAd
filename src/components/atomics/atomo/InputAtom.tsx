@@ -5,13 +5,20 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
   htmlFor: string | "text";
   label: string;
   type: "text" | "email" | "password";
+  register?: any;
 }
 
-export const InputAtom = ({ htmlFor, label, type, ...props }: IProps) => {
+export const InputAtom = ({
+  htmlFor,
+  label,
+  type,
+  register,
+  ...props
+}: IProps) => {
   return (
     <FormControl {...props}>
       <FormLabel htmlFor={htmlFor}>{label}</FormLabel>
-      <Input id={htmlFor} type={type} />
+      <Input id={htmlFor} type={type} name="name" />
     </FormControl>
   );
 };

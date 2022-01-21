@@ -1,34 +1,111 @@
+import { useForm } from "react-hook-form";
 import ButtonAtom from "../atomo/Button";
 import { InputTextAreaAtom } from "../atomo/InputAreaAtom";
 import { InputAtom } from "../atomo/InputAtom";
+import FormField from "../moleculas/FormField";
+import TextAreaField from "../moleculas/TextAreaField";
 import { FormMoleculaO } from "../moleculas/FormMolecula";
 
-export const FormOrganismo = ({ ...props }) => {
+type Inputs = {
+  name: string;
+  Graduated: string;
+  Eslogan: string;
+  Description: string;
+  profBackground: string;
+  Interests: string;
+};
+
+export const FormOrganismo = ({ handleSubmitHooksForm, ...props }: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({ mode: "onBlur" });
+
   return (
-    <FormMoleculaO>
-      <InputAtom htmlFor="name" type="text" label="Name teacher" />
-      <InputAtom htmlFor="graduated" type="text" label="Graduated " />
-      <InputTextAreaAtom
-        htmlFor="eslogan"
+    <FormMoleculaO
+      handleSubmit={handleSubmit}
+      handleSubmitHooksForm={handleSubmitHooksForm}
+    >
+      <FormField
+        {...register("name", {
+          required: "Field cannot be empty",
+          pattern: {
+            value: /^[^<>%$#^*]*$/,
+            message: "Wrong format",
+          },
+        })}
+        label="Name Teacher"
+        aria-invalid={errors.name ? "true" : "false"}
+        errors={errors.name}
+        placeholder="Alexei "
+      />
+      <FormField
+        {...register("Graduated", {
+          required: "Field cannot be empty",
+          pattern: {
+            value: /^[^<>%$#^*]*$/,
+            message: "Wrong format",
+          },
+        })}
+        label="Graduated"
+        aria-invalid={errors.Graduated ? "true" : "false"}
+        errors={errors.Graduated}
+        placeholder="University "
+      />
+      <TextAreaField
+        {...register("Eslogan", {
+          required: "Field cannot be empty",
+          pattern: {
+            value: /^[^<>%$#^*]*$/,
+            message: "Wrong format",
+          },
+        })}
         label="Eslogan"
-        placeholder="eslogan"
+        aria-invalid={errors.Eslogan ? "true" : "false"}
+        errors={errors.Eslogan}
+        placeholder="Eslogan "
       />
-      <InputTextAreaAtom
-        htmlFor="description"
+      <TextAreaField
+        {...register("Description", {
+          required: "Field cannot be empty",
+          pattern: {
+            value: /^[^<>%$#^*]*$/,
+            message: "Wrong format",
+          },
+        })}
         label="Description"
-        placeholder="description hero"
+        aria-invalid={errors.Description ? "true" : "false"}
+        errors={errors.Description}
+        placeholder="Description "
       />
-      <InputTextAreaAtom
-        htmlFor="profBackground"
+      <TextAreaField
+        {...register("profBackground", {
+          required: "Field cannot be empty",
+          pattern: {
+            value: /^[^<>%$#^*]*$/,
+            message: "Wrong format",
+          },
+        })}
         label="Profesional Background"
-        placeholder="Profesional Background hero"
+        aria-invalid={errors.profBackground ? "true" : "false"}
+        errors={errors.profBackground}
+        placeholder="profBackground "
       />
-      <InputTextAreaAtom
-        htmlFor="intersts"
-        label="Interests "
-        placeholder="Intersts hero"
+      <TextAreaField
+        {...register("Interests", {
+          required: "Field cannot be empty",
+          pattern: {
+            value: /^[^<>%$#^*]*$/,
+            message: "Wrong format",
+          },
+        })}
+        label="Interests"
+        aria-invalid={errors.Interests ? "true" : "false"}
+        errors={errors.Interests}
+        placeholder="Interests "
       />
-      <ButtonAtom text="Submit" colorScheme="blue" />
+      <ButtonAtom width="50%" type="submit" text="Submit" colorScheme="blue" />
     </FormMoleculaO>
   );
 };
