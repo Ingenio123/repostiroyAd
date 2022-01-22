@@ -8,6 +8,7 @@ import { StackAtom } from "../atomo/Stack";
 import { BoxImageMolecula } from "../moleculas/BoxImage";
 import di from "../../../di";
 import { ITeacherEntity } from "../../../domains/aggregates/interfaces/iTeacher";
+import Url from "../../../envConfig";
 
 type Inputs = {
   firstName: string;
@@ -72,7 +73,7 @@ export const FormOrganismo = ({ ...props }: any) => {
       //   imgUrl: formData.get("picture") || "asas",
       // };
 
-      const resp = await fetch("http://localhost:4000/data/createTeacher", {
+      const resp = await fetch(`${Url.apiUrl}/data/createTeacher`, {
         body: formData,
         method: "POST",
       });
