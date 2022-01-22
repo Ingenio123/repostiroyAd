@@ -6,6 +6,7 @@ export interface IAddEntity {
   eslogan: string;
   profBackground: string;
   interets: string;
+  imageTeacher?: any;
 }
 
 export interface ITeacherData {
@@ -16,4 +17,5 @@ export interface ITeacherData {
   eslogan: string;
   profBackground: string;
   interets: string;
+  imageTeacher?: any;
 }

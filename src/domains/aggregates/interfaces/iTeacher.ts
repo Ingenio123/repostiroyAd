@@ -5,7 +5,7 @@ export interface ITeacherEntity {
   description: string;
   interests: string;
   profBackground: string;
-  imgUrl?: string;
+  imgUrl?: any;
 }
 
 export interface ITeacherData {
@@ -16,5 +16,5 @@ export interface ITeacherData {
   description: string;
   interests: string;
   profBackground: string;
-  imgUrl: string;
+  imgUrl?: any;
 }

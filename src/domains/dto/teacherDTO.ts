@@ -5,7 +5,7 @@ export interface ITeacherParams {
   description: string;
   Interests: string;
   profesionalBackround: string;
-  imageUrl: string;
+  imageUrl?: any;
 }
 
 export interface ITeacherDTO {
@@ -15,7 +15,7 @@ export interface ITeacherDTO {
   description: string;
   interests: string;
   profBackground: string;
-  imgUrl?: string;
+  imageTeacher?: any;
   hoobies?: string;
 }
 

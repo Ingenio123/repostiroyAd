@@ -9,6 +9,7 @@ class Teacher implements IAddEntity {
   private readonly _eslogan: string;
   private readonly _profBackground: string;
   private readonly _interets: string;
+  private readonly _imgUrl: string;
 
   constructor(params: ITeacherData) {
     this._id = params.id;
@@ -18,6 +19,7 @@ class Teacher implements IAddEntity {
     this._eslogan = params.eslogan;
     this._profBackground = params.profBackground;
     this._interets = params.interets;
+    this._imgUrl = params.imageTeacher;
   }
 
   get id() {
@@ -45,6 +47,9 @@ class Teacher implements IAddEntity {
   }
   get interets() {
     return this._interets;
+  }
+  get imgUrl() {
+    return this._imgUrl;
   }
 }
 

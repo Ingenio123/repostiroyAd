@@ -58,13 +58,11 @@ class TeacherRepository implements ITeacherRepository {
   }
 
   async createTeacher(data: ITeacherDTO, token: string): Promise<Object> {
+    console.log(data);
     return await this.http.request({
       method: "POST",
       url: `${Url.apiUrl}/data/createTeacher`,
       body: data,
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
   }
 }
