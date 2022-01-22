@@ -9,6 +9,7 @@ import { BoxImageMolecula } from "../moleculas/BoxImage";
 import di from "../../../di";
 import { ITeacherEntity } from "../../../domains/aggregates/interfaces/iTeacher";
 import Url from "../../../envConfig";
+import { useHistory } from "react-router-dom";
 
 type Inputs = {
   firstName: string;
@@ -23,6 +24,7 @@ export const FormOrganismo = ({ ...props }: any) => {
   const [isDisabled, setIsDisabled] = useState<Boolean>(false);
   const [picture, setPicture] = useState<any>(null);
   const [imgData, setImgData] = useState<any>(null);
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -78,7 +80,7 @@ export const FormOrganismo = ({ ...props }: any) => {
         method: "POST",
       });
       const datos = await resp.json();
-      console.log(datos);
+      if (datos) return history.push("/admin/teacher");
       // console.log(resp);
     })(e);
   };
