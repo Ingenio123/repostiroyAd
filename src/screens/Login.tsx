@@ -6,6 +6,8 @@ function Login() {
       <Link to="/admin">Admin</Link>
       <br />
       <Link to="/admin/teacher">Admin Teacher</Link>
+      <br />
+      <Link to="/admin/create/teacher">Create Teacher</Link>
       <LoginArea />
     </div>
   );
