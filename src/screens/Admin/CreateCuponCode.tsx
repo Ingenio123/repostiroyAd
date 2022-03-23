@@ -1,3 +1,4 @@
+import CuponCodePage from "../../components/atomics/template/CuponCodePage";
 export const CreateCuponCode = () => {
-  return <h2>Create Cupon code</h2>;
+  return <CuponCodePage />;
 };

@@ -12,4 +12,5 @@ const cPresenters = presenters(cUseCases);
 export default {
   session: cPresenters.session,
   teacher: cPresenters.teacher,
+  cupon: cPresenters.cupon,
 } as IPresenters;

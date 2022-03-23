@@ -1,12 +1,6 @@
-import {
-  FormControl,
-  Input,
-  FormLabel,
-  Box,
-  Flex,
-  Text,
-} from "@chakra-ui/react";
+import { Input, Box, Flex, Text } from "@chakra-ui/react";
 import { forwardRef } from "react";
+
 type FormFieldProps = {
   label: string;
   placeholder: string;
@@ -15,10 +9,11 @@ type FormFieldProps = {
   errors: { message: string } | undefined;
   [prop: string]: unknown;
 };
+
 const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
   const { label, placeholder, type = "text", gridArea, ...other } = props;
-
   let errorMessage;
+
   if (props.errors) {
     errorMessage = props.errors.message;
   }
@@ -33,7 +28,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
           htmlFor={label}
           display="inline-block"
           mb={2}
-          color={props["errors"] ? "inputError" : "black"}
+          color={props["errors"] ? "inputError" : ""}
         >
           {label}
         </Box>
@@ -51,6 +46,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
         border="1px solid"
         borderColor={props["errors"] ? "inputError" : "inputBorder"}
         id={label}
+        _hover={{ border: "1px solid ##18181B" }}
       />
     </Box>
   );
