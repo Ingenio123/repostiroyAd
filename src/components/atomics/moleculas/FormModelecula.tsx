@@ -14,7 +14,7 @@ export const FormMolecula = ({ ...props }: any) => {
     <Box textAlign="left" minWidth={"600px"}>
       <form onSubmit={props.onSubmit}>
         <FormControl>
-          <FormLabel>Name Teacher</FormLabel>
+          <FormLabel>Teacher's name</FormLabel>
           <Input
             type="text"
             placeholder="Enter name teacher"
@@ -23,7 +23,7 @@ export const FormMolecula = ({ ...props }: any) => {
           />
         </FormControl>
         <FormControl>
-          <FormLabel>Eslogan</FormLabel>
+          <FormLabel>Slogan</FormLabel>
           <Textarea
             value={props.EsloganTeacher}
             placeholder="Here is a sample placeholder"
@@ -31,7 +31,7 @@ export const FormMolecula = ({ ...props }: any) => {
           ></Textarea>
         </FormControl>
         <FormControl>
-          <FormLabel>Description</FormLabel>
+          <FormLabel>Teacher's description</FormLabel>
           <Textarea
             value={props.DescriptionTeacher}
             placeholder="Here is a sample placeholder"
@@ -47,7 +47,7 @@ export const FormMolecula = ({ ...props }: any) => {
           ></Textarea>
         </FormControl>
         <FormControl mb="1rem">
-          <FormLabel>Interests</FormLabel>
+          <FormLabel>Teacher's interests</FormLabel>
           <Textarea
             value={props.InterestsTeacher}
             placeholder="Here is a sample placeholder"

@@ -28,7 +28,7 @@ const TextAreaField = forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
             fontWeight="medium"
             htmlFor={label}
             display="inline-block"
-            mb={2}
+            my="2"
             color={props["errors"] ? "inputError" : "black"}
           >
             {label}

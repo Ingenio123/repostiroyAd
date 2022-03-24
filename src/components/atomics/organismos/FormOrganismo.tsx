@@ -10,6 +10,7 @@ import di from "../../../di";
 import { ITeacherEntity } from "../../../domains/aggregates/interfaces/iTeacher";
 import Url from "../../../envConfig";
 import { useHistory } from "react-router-dom";
+import { Text } from "@chakra-ui/react";
 
 type Inputs = {
   firstName: string;
@@ -86,95 +87,89 @@ export const FormOrganismo = ({ ...props }: any) => {
   };
 
   return (
-    <StackAtom border="1px">
-      <BoxImageMolecula onChanguePicture={onChangePicture} urlImage={imgData} />
-
-      <FormMoleculaO handleSubmit={mySubmit}>
-        <FormField
-          {...register("firstName", {
-            required: "Field cannot be empty",
-            pattern: {
-              value: /^[^<>%$#^*]*$/,
-              message: "Wrong format",
-            },
-          })}
-          label="Name Teacher"
-          aria-invalid={errors.firstName ? "true" : "false"}
-          errors={errors.firstName}
-          placeholder="Alexei "
+    <>
+      <Text textAlign={"center"} as="h1" fontWeight="bold" fontSize="2rem">
+        Create teacher's profile
+      </Text>
+      <StackAtom m="0 auto">
+        <BoxImageMolecula
+          onChanguePicture={onChangePicture}
+          urlImage={imgData}
         />
-        <FormField
-          {...register("graduated", {
-            required: "Field cannot be empty",
-            pattern: {
-              value: /^[^<>%$#^*]*$/,
-              message: "Wrong format",
-            },
-          })}
-          label="graduated"
-          aria-invalid={errors.graduated ? "true" : "false"}
-          errors={errors.graduated}
-          placeholder="University "
-        />
-        <TextAreaField
-          {...register("eslogan", {
-            required: "Field cannot be empty",
-            pattern: {
-              value: /^[^<>%$#^*]*$/,
-              message: "Wrong format",
-            },
-          })}
-          label="eslogan"
-          aria-invalid={errors.eslogan ? "true" : "false"}
-          errors={errors.eslogan}
-          placeholder="Eslogan "
-        />
-        <TextAreaField
-          {...register("description", {
-            required: "Field cannot be empty",
-            pattern: {
-              value: /^[^<>%$#^*]*$/,
-              message: "Wrong format",
-            },
-          })}
-          label="description"
-          aria-invalid={errors.description ? "true" : "false"}
-          errors={errors.description}
-          placeholder="description "
-        />
-        <TextAreaField
-          {...register("profesionalBackround", {
-            required: "Field cannot be empty",
-            pattern: {
-              value: /^[^<>%$#^*]*$/,
-              message: "Wrong format",
-            },
-          })}
-          label="Profesional Background"
-          aria-invalid={errors.profesionalBackround ? "true" : "false"}
-          errors={errors.profesionalBackround}
-          placeholder="profBackground "
-        />
-        <TextAreaField
-          {...register("Interests", {
-            required: "Field cannot be empty",
-            pattern: {
-              value: /^[^<>%$#^*]*$/,
-              message: "Wrong format",
-            },
-          })}
-          label="Interests"
-          aria-invalid={errors.Interests ? "true" : "false"}
-          errors={errors.Interests}
-          placeholder="Interests "
-        />
-        <ButtonAtom
-          width="50%"
-          type="submit"
-          text="Submit"
-          colorScheme="blue"
-        />
-      </FormMoleculaO>
-    </StackAtom>
+        <FormMoleculaO handleSubmit={mySubmit}>
+          <FormField
+            {...register("firstName", {
+              required: "Field cannot be empty",
+              pattern: {
+                value: /^[^<>%$#^*]*$/,
+                message: "Wrong format",
+              },
+            })}
+            label="Teacher's name"
+            aria-invalid={errors.firstName ? "true" : "false"}
+            errors={errors.firstName}
+            placeholder="Jane Doe"
+          />
+          <TextAreaField
+            {...register("eslogan", {
+              required: "Field cannot be empty",
+              pattern: {
+                value: /^[^<>%$#^*]*$/,
+                message: "Wrong format",
+              },
+            })}
+            label="Slogan"
+            aria-invalid={errors.eslogan ? "true" : "false"}
+            errors={errors.eslogan}
+            placeholder="Slogan"
+          />
+          <TextAreaField
+            {...register("description", {
+              required: "Field cannot be empty",
+              pattern: {
+                value: /^[^<>%$#^*]*$/,
+                message: "Wrong format",
+              },
+            })}
+            label="Introduction"
+            aria-invalid={errors.description ? "true" : "false"}
+            errors={errors.description}
+            placeholder="Introduction"
+          />
+          <TextAreaField
+            {...register("profesionalBackround", {
+              required: "Field cannot be empty",
+              pattern: {
+                value: /^[^<>%$#^*]*$/,
+                message: "Wrong format",
+              },
+            })}
+            label="Professional Background"
+            aria-invalid={errors.profesionalBackround ? "true" : "false"}
+            errors={errors.profesionalBackround}
+            placeholder="Professional Background"
+          />
+          <TextAreaField
+            {...register("Interests", {
+              required: "Field cannot be empty",
+              pattern: {
+                value: /^[^<>%$#^*]*$/,
+                message: "Wrong format",
+              },
+            })}
+            label="Hobbies and interests"
+            aria-invalid={errors.Interests ? "true" : "false"}
+            errors={errors.Interests}
+            placeholder="Hobbies and interests"
+          />
+          <ButtonAtom
+            width="50%"
+            type="submit"
+            text="Submit"
+            colorScheme="blue"
+          />
+        </FormMoleculaO>
+      </StackAtom>
+    </>
   );
 };

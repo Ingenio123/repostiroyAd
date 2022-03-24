@@ -16,7 +16,13 @@ const ButtonAtom: FC<IProps> = ({
   children,
 }) => {
   return (
-    <Button type={type} colorScheme={colorScheme} width={width || "1"}>
+    <Button
+      type={type}
+      colorScheme={colorScheme}
+      width={width || "1"}
+      m="2rem auto"
+      display="block"
+    >
       {text || children}
     </Button>
   );

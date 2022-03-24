@@ -32,12 +32,11 @@ export const ModalMolecula = ({ isOpen, onClose, id, ...props }: any) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Deseas Eliminar</ModalHeader>
+        <ModalHeader>Delete teacher?</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex eius
-          facere corporis minus voluptates voluptatibus eveniet unde eum vero
-          est?
+          Are you sure you want to delete this teacher? This action cannot be
+          undone.
         </ModalBody>
 
         <ModalFooter>

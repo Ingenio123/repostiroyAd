@@ -1,4 +1,4 @@
-import { Table, Tbody, Tr, Td, Button, Thead, Th } from "@chakra-ui/react";
+import { Table, Tbody, Tr, Td, Button, Thead, Th, Box } from "@chakra-ui/react";
 import { FC } from "react";
 import { ICuponCodeVM } from "../../../vm/CuponCodeList";
 
@@ -6,9 +6,11 @@ interface TableMoleculaProps {
   codeList: Array<ICuponCodeVM>;
 }
 export const TableMolecula: FC<TableMoleculaProps> = ({ codeList }) => {
-  const FormatDate = (d: Date) => {
+  const FormatDate = (dateExpires: Date) => {
     // console.log(d);
     // console.log(d.getFullYear());
+    const d = new Date(dateExpires);
+    // console.log(d);
     const year = d.getFullYear(); // 2019
     const date = d.getDate();
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -36,43 +38,46 @@ export const TableMolecula: FC<TableMoleculaProps> = ({ codeList }) => {
   };
 
   return (
-    <Table size="sm" mt="2rem">
-      <Thead>
-        <Tr>
-          <Th>Val Code</Th>
-          <Th>Val</Th>
-          <Th>num uses</Th>
-          <Th>caducado</Th>
-          <Th>expires</Th>
-          <Th>Accion</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {codeList.map((e) => {
-          return (
-            <Tr>
-              <Td>text</Td>
-              <Td>{e.valor}</Td>
-              <Td>{e.numberUses}</Td>
-              <Td>{e.caducado ? "true" : "false"}</Td>
-              <Td>{e.expiresCode}</Td>
-              <Td>
-                <Button
-                  type="button"
-                  colorScheme={"green"}
-                  size="sm"
-                  mr=".2rem"
-                >
-                  Update
-                </Button>
-                <Button type="button" colorScheme={"red"} size="sm">
-                  Delete
-                </Button>
-              </Td>
-            </Tr>
-          );
-        })}
-      </Tbody>
-    </Table>
+    <Box overflowY="auto" maxHeight="300px">
+      <Table width="100%" size="sm" mt="2rem">
+        <Thead>
+          <Tr>
+            <Td fontWeight="medium">Coupon Name</Td>
+            <Td fontWeight="medium">Discount</Td>
+            <Td fontWeight="medium">N° uses</Td>
+            <Td fontWeight="medium">Status</Td>
+            <Td fontWeight="medium">Expiration date</Td>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {codeList.map((e) => {
+            return (
+              <Tr key={e.id}>
+                <Td textAlign={"center"}>text</Td>
+                <Td textAlign={"center"}>{e.valor}</Td>
+                <Td textAlign={"center"}>{e.numberUses}</Td>
+                <Td textAlign={"center"}>
+                  {e.caducado ? "Expired" : "Active"}
+                </Td>
+                <Td textAlign={"center"}>{FormatDate(e.expiresCode)}</Td>
+                <Td display="flex">
+                  <Button
+                    type="button"
+                    colorScheme={"green"}
+                    size="sm"
+                    mr=".2rem"
+                  >
+                    Update
+                  </Button>
+                  <Button type="button" colorScheme={"red"} size="sm">
+                    Delete
+                  </Button>
+                </Td>
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </Box>
   );
 };

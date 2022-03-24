@@ -13,7 +13,7 @@ export const FormMoleculaO = ({
   ...props
 }: IProps) => {
   return (
-    <BoxAtom width="50%">
+    <BoxAtom width="50%" display="block" m="0 auto">
       <form style={{ width: "100%" }} onSubmit={handleSubmit} {...props}>
         {children}
       </form>

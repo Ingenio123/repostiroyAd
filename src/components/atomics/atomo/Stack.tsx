@@ -1,20 +1,10 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack, Box, BoxProps } from "@chakra-ui/react";
 import { FC } from "react";
 
-interface IProps {
-  sapacign?: string;
-  border?: string | "1px";
-}
-
-export const StackAtom: FC<IProps> = ({ children, sapacign, border }) => {
+export const StackAtom: FC<BoxProps> = ({ children, ...props }) => {
   return (
-    <Stack
-      mt="30px"
-      direction={["column", "row"]}
-      spacing={sapacign}
-      border={border}
-    >
+    <Box as="div" mt="30px" {...props}>
       {children}
-    </Stack>
+    </Box>
   );
 };

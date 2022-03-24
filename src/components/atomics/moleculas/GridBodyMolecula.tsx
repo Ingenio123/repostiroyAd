@@ -10,7 +10,7 @@ import { TableMolecula } from "./TableMolecula";
 const GridBodyMolecula = () => {
   const [list, setList] = useCodeCuponListState();
   const cuponCodeVM = list.map((codeEntity) => new CuponCodeVM(codeEntity));
-  console.log(cuponCodeVM);
+  // console.log(cuponCodeVM);
   useEffect(() => {
     const asyncFnc = async () => {
       setList(await di.cupon.getCuponCodes());

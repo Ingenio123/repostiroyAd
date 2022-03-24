@@ -1,14 +1,7 @@
 import { useState } from "react";
 //libarys
 import { useForm } from "react-hook-form";
-import {
-  Stack,
-  Box,
-  Heading,
-  SimpleGrid,
-  Button,
-  Text,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid, Button } from "@chakra-ui/react";
 
 //atomos
 import FormLegend from "../atomo/FormLegend";
@@ -38,22 +31,15 @@ const FormCuponCode = (): JSX.Element => {
   return (
     <Box
       as="form"
-      borderRadius="0.5rem"
       px={{ base: "1.5rem", sm: "1.75rem", lg: "3rem" }}
-      pt={{ base: "1.5rem", sm: "1.875rem", lg: "3.65rem" }}
-      pb={{ base: "2rem", lg: "3rem" }}
+      // pt={{ base: "1.5rem", sm: "1.875rem", lg: "3.65rem" }}
+      // pb={{ base: "2rem", lg: "3rem" }}
       maxWidth={{ lg: "45.625rem", base: "sm" }}
-      // flex={{ lg: "1 1 65%" }}
-      border="1px"
-      borderColor={"silver"}
-      m="2rem 0"
       w="500px"
+      // flex={{ lg: "1 1 65%" }}
     >
-      <Heading as="h1" fontSize={{ base: "1.75rem" }} mb={{ base: "2rem" }}>
-        Coupon Code
-      </Heading>
       <Box as="fieldset" mb="2rem">
-        <FormLegend>Cupon Code details</FormLegend>
+        <FormLegend>Create coupons</FormLegend>
         <SimpleGrid
           gridTemplateColumns={{ base: "1fr", sm: "1fr" }}
           gridGap={{ base: "1rem" }}
@@ -64,7 +50,7 @@ const FormCuponCode = (): JSX.Element => {
             })}
             aria-invalid={errors.codigo ? "true" : "false"}
             errors={errors.codigo}
-            label={"Input Code"}
+            label={"Enter coupon name"}
             placeholder="#12-2_2"
             type="string"
           />
@@ -74,8 +60,8 @@ const FormCuponCode = (): JSX.Element => {
             })}
             aria-invalid={errors.descuento ? "true" : "false"}
             errors={errors.descuento}
-            label={"Input discont"}
-            placeholder="10.5"
+            label={"Enter discount"}
+            placeholder="Example: 0.30"
             type="number"
           />
           <FormField
@@ -94,7 +80,7 @@ const FormCuponCode = (): JSX.Element => {
             fontWeight="medium"
             display="inline-block"
           >
-            Date Expires
+            Expiration date
           </Box>
           <DatePickerAtom
             date={date}

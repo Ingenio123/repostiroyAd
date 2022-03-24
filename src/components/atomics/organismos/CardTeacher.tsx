@@ -35,81 +35,93 @@ export const CardTeacherOrganismo = ({ data, ...props }: any) => {
   };
 
   return (
-    <StackAtom sapacign="24px">
-      <Box w="70%">
-        {data.map((item: any, index: number) => {
-          return (
-            <FlexAtom key={index} mt="20px">
-              <BoxAtom>
-                <Avatar src={item.imgUrl} />
-                <div style={{ marginLeft: "10px" }}>
-                  <Text fontWeight="bold">{item.name} </Text>
-                  <Text fontSize="medium">{item.eslogan}</Text>
-                </div>
-              </BoxAtom>
+    <>
+      <Text
+        as="h2"
+        fontWeight="bold"
+        fontSize="3xl"
+        lineHeight="normal"
+        mt="2rem"
+        textAlign="center"
+      >
+        Teacher's profile
+      </Text>
+      <StackAtom>
+        <Box w="70%">
+          {data.map((item: any, index: number) => {
+            return (
+              <FlexAtom key={index} mt="20px">
+                <BoxAtom>
+                  <Avatar src={item.imgUrl} />
+                  <div style={{ marginLeft: "10px" }}>
+                    <Text fontWeight="bold">{item.name} </Text>
+                    <Text fontSize="medium">{item.eslogan}</Text>
+                  </div>
+                </BoxAtom>
 
-              <Button
-                alignSelf={"flex-end"}
-                justifySelf={"flex-end"}
-                size={"sm"}
-                bg="brand.900"
-                colorScheme="brand"
-                onClick={() => Dropdown(index)}
-              >
-                view more
-              </Button>
-              {State === index && (
-                <Box borderTop="1px" borderColor="gray.200" p="2" mt="3">
-                  <Text fontWeight={"medium"}>Description</Text>
-                  <Text fontWeight={"normal"} mb="2">
-                    {item.description}
-                  </Text>
-                  <Text fontWeight={"medium"}>Profesional Background</Text>
-                  <Text fontWeight={"normal"} mb="2">
-                    {item.profBackground}
-                  </Text>
-                  <Text fontWeight={"medium"}>Interests</Text>
-                  <Text fontWeight={"normal"} mb="2">
-                    {item.interests}
-                  </Text>
-                  <Flex width="100%">
-                    <Button
-                      alignSelf={"flex-end"}
-                      justifySelf={"flex-end"}
-                      size={"sm"}
-                      bg="green.500"
-                      colorScheme="green"
-                      onClick={() => handleClick(item.id)}
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      alignSelf={"flex-end"}
-                      justifySelf={"flex-end"}
-                      size={"sm"}
-                      bg="red.500"
-                      colorScheme="red"
-                      ml="20px"
-                      onClick={() => handleClickModal(item.id)}
-                    >
-                      Delete
-                    </Button>
-                  </Flex>
-                </Box>
-              )}
-            </FlexAtom>
-          );
-        })}
-      </Box>
-      <ModalMolecula
-        handleDelete={props.handleDelete}
-        isOpen={isOpen}
-        id={id}
-        onClose={onClose}
-      />
-      <Box w="30%" h="40px" bg="pink.100">
+                <Button
+                  alignSelf={"flex-end"}
+                  justifySelf={"flex-end"}
+                  size={"sm"}
+                  bg="brand.900"
+                  colorScheme="brand"
+                  onClick={() => Dropdown(index)}
+                >
+                  View more
+                </Button>
+                {State === index && (
+                  <Box borderTop="1px" borderColor="gray.200" p="2" mt="3">
+                    <Text fontWeight={"medium"}>Description</Text>
+                    <Text fontWeight={"normal"} mb="2">
+                      {item.description}
+                    </Text>
+                    <Text fontWeight={"medium"}>Profesional Background</Text>
+                    <Text fontWeight={"normal"} mb="2">
+                      {item.profBackground}
+                    </Text>
+                    <Text fontWeight={"medium"}>Interests</Text>
+                    <Text fontWeight={"normal"} mb="2">
+                      {item.interests}
+                    </Text>
+                    <Flex width="100%">
+                      <Button
+                        alignSelf={"flex-end"}
+                        justifySelf={"flex-end"}
+                        size={"sm"}
+                        bg="green.500"
+                        colorScheme="green"
+                        onClick={() => handleClick(item.id)}
+                      >
+                        Update
+                      </Button>
+                      <Button
+                        alignSelf={"flex-end"}
+                        justifySelf={"flex-end"}
+                        size={"sm"}
+                        bg="red.500"
+                        colorScheme="red"
+                        ml="20px"
+                        onClick={() => handleClickModal(item.id)}
+                      >
+                        Delete
+                      </Button>
+                    </Flex>
+                  </Box>
+                )}
+              </FlexAtom>
+            );
+          })}
+        </Box>
+        <ModalMolecula
+          handleDelete={props.handleDelete}
+          isOpen={isOpen}
+          id={id}
+          onClose={onClose}
+        />
+        {/* <Box w="30%" h="40px" bg="pink.100">
         3
-      </Box>
-    </StackAtom>
+      </Box> */}
+      </StackAtom>
+    </>
   );
 };
