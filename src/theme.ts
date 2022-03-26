@@ -8,7 +8,7 @@ const colors = {
     500: "#314584",
   },
   inputError: "#EF4444",
-  inputBorder: "#18181B",
+  inputBorder: "#A1A1AA",
 };
 
 export default extendTheme({ colors });

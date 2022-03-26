@@ -11,6 +11,24 @@ class CuponCode implements ICuponCode {
       return e;
     });
   }
+  //
+  addCuponCode(
+    codigo: string,
+    discont: number,
+    numero_usos: number,
+    dateExpires: Date
+  ): Promise<boolean> {
+    return this.cuponRepo.addCuponCode(
+      codigo,
+      discont,
+      numero_usos,
+      dateExpires
+    );
+  }
+  //
+  deleteCupon(id: string): Promise<boolean> {
+    return this.cuponRepo.delete(id);
+  }
 }
 
 export default CuponCode;

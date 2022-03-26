@@ -5,13 +5,21 @@ type FormFieldProps = {
   label: string;
   placeholder: string;
   type?: string;
+  step?: string;
   gridArea?: { [key: string]: string };
   errors: { message: string } | undefined;
   [prop: string]: unknown;
 };
 
 const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
-  const { label, placeholder, type = "text", gridArea, ...other } = props;
+  const {
+    label,
+    placeholder,
+    type = "text",
+    gridArea,
+    step = "1",
+    ...other
+  } = props;
   let errorMessage;
 
   if (props.errors) {
@@ -28,7 +36,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
           htmlFor={label}
           display="inline-block"
           mb={2}
-          color={props["errors"] ? "inputError" : ""}
+          color={props["errors"] && "inputError"}
         >
           {label}
         </Box>
@@ -43,10 +51,9 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
         {...other}
         type={type}
         placeholder={placeholder}
-        border="1px solid"
         borderColor={props["errors"] ? "inputError" : "inputBorder"}
         id={label}
-        _hover={{ border: "1px solid ##18181B" }}
+        step={step}
       />
     </Box>
   );

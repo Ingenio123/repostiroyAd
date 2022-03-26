@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 //libarys
 import { useForm } from "react-hook-form";
 import { Box, SimpleGrid, Button } from "@chakra-ui/react";
@@ -16,7 +16,16 @@ type Inputs = {
   numero_usos: number;
 };
 
-const FormCuponCode = (): JSX.Element => {
+interface IProps {
+  insertCuponFnc(
+    codigo: string,
+    discont: number,
+    numero_usos: number,
+    dateExpires: Date
+  ): void;
+}
+
+const FormCuponCode: FC<IProps> = ({ insertCuponFnc }): JSX.Element => {
   const [date, setDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState<Date[]>([
     new Date(),
@@ -26,7 +35,15 @@ const FormCuponCode = (): JSX.Element => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Inputs>({ mode: "onBlur" });
+
+  const SubmitData = (data: Inputs) => {
+    const { codigo, descuento, numero_usos } = data;
+    let dateExpires = selectedDates[1];
+    insertCuponFnc(codigo, descuento, numero_usos, dateExpires);
+    reset();
+  };
 
   return (
     <Box
@@ -37,6 +54,7 @@ const FormCuponCode = (): JSX.Element => {
       maxWidth={{ lg: "45.625rem", base: "sm" }}
       w="500px"
       // flex={{ lg: "1 1 65%" }}
+      onSubmit={handleSubmit((data) => SubmitData(data))}
     >
       <Box as="fieldset" mb="2rem">
         <FormLegend>Create coupons</FormLegend>
@@ -63,6 +81,7 @@ const FormCuponCode = (): JSX.Element => {
             label={"Enter discount"}
             placeholder="Example: 0.30"
             type="number"
+            step="0.01"
           />
           <FormField
             {...register("numero_usos", {

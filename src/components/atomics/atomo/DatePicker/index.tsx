@@ -30,7 +30,7 @@ const DatePickerAtom = ({
           },
         },
         inputProps: {
-          borderColor: "black",
+          borderColor: "inputBorder",
           _hover: {
             borderColor: "gray",
           },

@@ -22,6 +22,35 @@ class CuponCodeRepository implements ICuponCodeRepository {
       (code: ICuponCodeParams) => new CuponCodeDTO(code)
     );
   }
+  addCuponCode(
+    codigo: string,
+    discont: number,
+    numero_usos: number,
+    dateExpires: Date
+  ): Promise<boolean> {
+    return this.http.request({
+      method: "POST",
+      url: `${env.apiUrl}/createCodeDescuento`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        codigo,
+        descuento: discont,
+        numero_usos,
+        expiresCode: dateExpires,
+      },
+    });
+  }
+  delete(id: string): Promise<boolean> {
+    return this.http.request({
+      method: "DELETE",
+      url: `${env.apiUrl}/data/delete/code/${id}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 }
 
 export default CuponCodeRepository;

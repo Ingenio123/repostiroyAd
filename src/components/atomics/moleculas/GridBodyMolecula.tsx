@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import GridBodyatom from "../atomo/GridBodyAtom";
 import TextAtom from "../atomo/TextSpanAtom";
 import { Box } from "@chakra-ui/react";
@@ -7,7 +7,11 @@ import { useCodeCuponListState } from "../../../hooks/CuponCodeRecoil";
 import CuponCodeVM from "../../../vm/CuponCodeList";
 import { TableMolecula } from "./TableMolecula";
 
-const GridBodyMolecula = () => {
+interface IProps {
+  deleteCoupon(id: string): void;
+}
+
+const GridBodyMolecula: FC<IProps> = ({ deleteCoupon }) => {
   const [list, setList] = useCodeCuponListState();
   const cuponCodeVM = list.map((codeEntity) => new CuponCodeVM(codeEntity));
   // console.log(cuponCodeVM);
@@ -18,7 +22,7 @@ const GridBodyMolecula = () => {
     asyncFnc();
   }, []);
 
-  return <TableMolecula codeList={cuponCodeVM} />;
+  return <TableMolecula deleteCoupon={deleteCoupon} codeList={cuponCodeVM} />;
 };
 
 export default GridBodyMolecula;

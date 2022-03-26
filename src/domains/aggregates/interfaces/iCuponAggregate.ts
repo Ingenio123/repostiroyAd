@@ -4,4 +4,5 @@ export interface ICuponEntity {
   valor: any;
   numberUses: number;
   expiresCode: Date;
+  Codeval: string;
 }

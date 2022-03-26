@@ -4,6 +4,7 @@ export interface ICuponCodeDTO {
   readonly valor: number;
   readonly numberUses: number;
   readonly expiresCode: Date;
+  readonly Codeval: string;
 }
 
 export interface ICuponCodeParams {
@@ -12,6 +13,7 @@ export interface ICuponCodeParams {
   Valor: number;
   numberUses: number;
   expiresCode: Date;
+  Codeval: string;
 }
 
 class CuponCodeDTO implements ICuponCodeDTO {
@@ -20,6 +22,7 @@ class CuponCodeDTO implements ICuponCodeDTO {
   readonly valor: number;
   readonly numberUses: number;
   readonly expiresCode: Date;
+  readonly Codeval: string;
 
   constructor(params: ICuponCodeParams) {
     this._id = params._id;
@@ -27,6 +30,7 @@ class CuponCodeDTO implements ICuponCodeDTO {
     this.valor = params.Valor;
     this.numberUses = params.numberUses;
     this.expiresCode = params.expiresCode;
+    this.Codeval = params.Codeval;
   }
 }
 

@@ -2,6 +2,7 @@ import { ICuponEntity } from "../domains/aggregates/interfaces/iCuponAggregate";
 
 export interface ICuponCodeVM {
   id: string;
+  code: string;
   caducado: boolean;
   expiresCode: Date;
   numberUses: number;
@@ -14,6 +15,7 @@ class CuponCodeVM implements ICuponCodeVM {
   private readonly _expiresCode: Date;
   private readonly _numberUses: number;
   private readonly _valor: number;
+  private readonly _code: string;
   //   private _comments: Array<ICommentEntity>;
 
   constructor(params: ICuponEntity) {
@@ -22,6 +24,7 @@ class CuponCodeVM implements ICuponCodeVM {
     this._expiresCode = params.expiresCode;
     this._numberUses = params.numberUses;
     this._valor = params.valor;
+    this._code = params.Codeval;
   }
 
   get id() {
@@ -42,6 +45,9 @@ class CuponCodeVM implements ICuponCodeVM {
 
   get valor() {
     return this._valor;
+  }
+  get code() {
+    return this._code;
   }
 }
 
