@@ -54,23 +54,20 @@ const CuponCodePage = (): JSX.Element => {
   return (
     <>
       <Heading
-        as="h1"
-        fontSize={{ base: "1.75rem" }}
-        mb={{ base: "2rem" }}
+        as="h2"
+        fontWeight="bold"
+        fontSize="3xl"
+        lineHeight="normal"
+        mt="2rem"
         textAlign="center"
       >
         Manage Coupons
       </Heading>
-      <Stack width="100%" spacing="24px" direction="row">
+      <Stack width="100%" mt="30px" spacing="24px" direction="row">
         <FormCuponCode insertCuponFnc={insertCuponFnc} />
         <div>
           <FormLegend>View or delete coupons </FormLegend>
-          {/* <SearchMolecula
-            placeholder="Search coupon name"
-            type="text"
-            label="Search coupon"
-          /> */}
-          {/* <Divider orientation="horizontal" my="1rem" /> */}
+
           <GirdBodyMolecula deleteCoupon={deleteCoupon} />
         </div>
       </Stack>

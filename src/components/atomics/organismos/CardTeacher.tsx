@@ -11,13 +11,40 @@ import { FlexAtom } from "../atomo/Flex";
 import { StackAtom } from "../atomo/Stack";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-
 import { ModalMolecula } from "../../../components/atomics/moleculas/ModalMolecula";
+import { ITeacherEntity } from "../../../domains/aggregates/interfaces/iTeacher";
 
-export const CardTeacherOrganismo = ({ data, ...props }: any) => {
+import { ModalAddFlagOrganismo } from "./ModalFlag";
+import { FC } from "react";
+import { IFlagVM } from "../../../vm/flagList";
+
+// ####################################
+interface IPropsCard {
+  FlagVMList: Array<IFlagVM>;
+  data: Array<ITeacherEntity>;
+  handleDelete: Function;
+}
+interface PropStateTeacher {
+  id: string;
+  nameTeacher: string;
+  urlImage: string;
+}
+
+//#################################
+export const CardTeacherOrganismo: FC<IPropsCard> = ({
+  FlagVMList,
+  data,
+  ...props
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [State, setState] = useState<any>("");
+  const [ModalFlag, setModalFlag] = useState<boolean>(false);
   const [id, setId] = useState<any>("");
+  const [SelectTeacher, setSelectTeacher] = useState<PropStateTeacher>({
+    id: "",
+    nameTeacher: "",
+    urlImage: "",
+  });
   const history = useHistory();
 
   const Dropdown = (index: any) => {
@@ -34,6 +61,19 @@ export const CardTeacherOrganismo = ({ data, ...props }: any) => {
     return onOpen();
   };
 
+  const handleClickModalFlag = () => {
+    setModalFlag((prev) => !prev);
+  };
+
+  const handleSelect = (id: any, nameTeacher: any, urlImage: any) => {
+    setSelectTeacher({
+      ...SelectTeacher,
+      id,
+      nameTeacher,
+      urlImage,
+    });
+  };
+
   return (
     <>
       <Text
@@ -46,29 +86,42 @@ export const CardTeacherOrganismo = ({ data, ...props }: any) => {
       >
         Teacher's profile
       </Text>
-      <StackAtom>
-        <Box w="70%">
+      <StackAtom as="div" mt="30px" m="0 auto">
+        <Box w="70%" m="0 auto">
           {data.map((item: any, index: number) => {
             return (
               <FlexAtom key={index} mt="20px">
-                <BoxAtom>
-                  <Avatar src={item.imgUrl} />
-                  <div style={{ marginLeft: "10px" }}>
-                    <Text fontWeight="bold">{item.name} </Text>
-                    <Text fontSize="medium">{item.eslogan}</Text>
-                  </div>
+                <BoxAtom
+                  as="div"
+                  display={"flex"}
+                  flexDirection="row"
+                  justifyContent={"space-between"}
+                >
+                  <BoxAtom as="div" display="flex">
+                    <Avatar size="xl" mr="2" src={item.imgUrl} />
+                    <Text
+                      fontWeight="bold"
+                      fontSize={"2xl"}
+                      alignSelf="center"
+                      justifySelf={"flex-start"}
+                    >
+                      {item.name}{" "}
+                    </Text>
+                  </BoxAtom>
+
+                  <Button
+                    alignSelf={"center"}
+                    size={"md"}
+                    bg="brand.900"
+                    colorScheme="brand"
+                    onClick={() => Dropdown(index)}
+                    alignItems="center"
+                  >
+                    Edit
+                  </Button>
+                  {/* <Text fontSize="medium">{item.eslogan}</Text> */}
                 </BoxAtom>
 
-                <Button
-                  alignSelf={"flex-end"}
-                  justifySelf={"flex-end"}
-                  size={"sm"}
-                  bg="brand.900"
-                  colorScheme="brand"
-                  onClick={() => Dropdown(index)}
-                >
-                  View more
-                </Button>
                 {State === index && (
                   <Box borderTop="1px" borderColor="gray.200" p="2" mt="3">
                     <Text fontWeight={"medium"}>Description</Text>
@@ -83,24 +136,42 @@ export const CardTeacherOrganismo = ({ data, ...props }: any) => {
                     <Text fontWeight={"normal"} mb="2">
                       {item.interests}
                     </Text>
-                    <Flex width="100%">
-                      <Button
-                        alignSelf={"flex-end"}
-                        justifySelf={"flex-end"}
-                        size={"sm"}
-                        bg="green.500"
-                        colorScheme="green"
-                        onClick={() => handleClick(item.id)}
-                      >
-                        Update
-                      </Button>
+                    <Flex width="100%" justifyContent="space-between">
+                      <div>
+                        <Button
+                          alignSelf={"flex-end"}
+                          justifySelf={"flex-end"}
+                          size={"sm"}
+                          bg="blue.500"
+                          colorScheme="blue"
+                          mr="20px"
+                          onClick={() => {
+                            handleSelect(item.id, item.name, item.imgUrl);
+                            handleClickModalFlag();
+                          }}
+                        >
+                          Add languages
+                        </Button>
+                        <Button
+                          alignSelf={"flex-end"}
+                          justifySelf={"flex-end"}
+                          size={"sm"}
+                          bg="green.500"
+                          colorScheme="green"
+                          mr="20px"
+                          onClick={() => handleClick(item.id)}
+                        >
+                          Update
+                        </Button>
+                      </div>
+
                       <Button
                         alignSelf={"flex-end"}
                         justifySelf={"flex-end"}
                         size={"sm"}
                         bg="red.500"
                         colorScheme="red"
-                        ml="20px"
+                        mr="20px"
                         onClick={() => handleClickModal(item.id)}
                       >
                         Delete
@@ -118,10 +189,13 @@ export const CardTeacherOrganismo = ({ data, ...props }: any) => {
           id={id}
           onClose={onClose}
         />
-        {/* <Box w="30%" h="40px" bg="pink.100">
-        3
-      </Box> */}
       </StackAtom>
+      <ModalAddFlagOrganismo
+        handleClickModalFlag={handleClickModalFlag}
+        isOpenModal={ModalFlag}
+        FlagVMList={FlagVMList}
+        SelectTeacher={SelectTeacher}
+      />
     </>
   );
 };

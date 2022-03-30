@@ -13,4 +13,5 @@ export default {
   session: cPresenters.session,
   teacher: cPresenters.teacher,
   cupon: cPresenters.cupon,
+  flag: cPresenters.flag,
 } as IPresenters;

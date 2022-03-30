@@ -14,6 +14,7 @@ interface IProps {
 const GridBodyMolecula: FC<IProps> = ({ deleteCoupon }) => {
   const [list, setList] = useCodeCuponListState();
   const cuponCodeVM = list.map((codeEntity) => new CuponCodeVM(codeEntity));
+
   // console.log(cuponCodeVM);
   useEffect(() => {
     const asyncFnc = async () => {
