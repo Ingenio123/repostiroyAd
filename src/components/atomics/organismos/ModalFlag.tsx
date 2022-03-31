@@ -53,7 +53,7 @@ export const ModalAddFlagOrganismo: FC<ModalAddFlagProps> = ({
     };
     // di.teacher.assignFlagTeacher()
     const resp = await fetch(
-      `http://localhost:4000/data/addFlagToTeachers/${idTacher}`,
+      `https://www.ingenioapi.com/data/addFlagToTeachers/${idTacher}`,
       {
         method: "PUT",
         headers: {

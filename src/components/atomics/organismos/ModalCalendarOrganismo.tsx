@@ -53,7 +53,7 @@ export const ModalCalendarOrganismo: FC<ModalAddFlagProps> = ({
     };
     // di.teacher.assignFlagTeacher()
     const resp = await fetch(
-      `http://localhost:4000/data/addCalendarTeacher/${idTacher}`,
+      `https://www.ingenioapi.com/data/addCalendarTeacher/${idTacher}`,
       {
         method: "PUT",
         headers: {
