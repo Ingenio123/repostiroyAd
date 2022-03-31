@@ -1,5 +1,5 @@
+import { IAddAsingFlagDTO } from "../../dto/addFlagToTeacher";
 import { ITeacherDTO } from "../../dto/teacherDTO";
-// import { ICommentDTO } from "@domains/dto/CommentDTO";
 
 export interface ITeacherRepository {
   getTeachers(): Promise<Array<ITeacherDTO>>;
@@ -7,4 +7,5 @@ export interface ITeacherRepository {
   deleteTeacher(id: string): Promise<object>;
   updateTeacher(data: ITeacherDTO, id: string): Promise<Object>;
   createTeacher(data: ITeacherDTO, token: string): Promise<Object>;
+  assignFlagTeacher(flagId: IAddAsingFlagDTO): Promise<boolean>;
 }

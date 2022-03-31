@@ -4,6 +4,7 @@ import { ITeacherPresenter } from "./interfaces/iTeacher";
 import { ITeacherUseCases } from "../../domains/useCases/interfaces/iTeacher";
 // import { IBoardEntity } from "@domains/aggregates/interfaces/iBoard";
 import { ITeacherEntity } from "../../domains/aggregates/interfaces/iTeacher";
+import { IAddAsingFlagDTO } from "../../domains/dto/addFlagToTeacher";
 class TeacherPresenter implements ITeacherPresenter {
   constructor(private readonly useCases: ITeacherUseCases) {}
 
@@ -24,6 +25,9 @@ class TeacherPresenter implements ITeacherPresenter {
   }
   async createTeacher(data: ITeacherEntity, token: string): Promise<Object> {
     return this.useCases.createTeacher(data, token);
+  }
+  async assignFlagTeacher(flagId: IAddAsingFlagDTO): Promise<boolean> {
+    return this.useCases.assignFlagTeacher(flagId);
   }
 }
 

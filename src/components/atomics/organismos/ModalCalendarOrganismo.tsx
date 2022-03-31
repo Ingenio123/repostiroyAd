@@ -6,11 +6,10 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  RadioGroup,
-  CheckboxGroup,
   Checkbox,
+  Input,
+  Select,
   Box,
-  Grid,
   Divider,
   Image,
   Text,
@@ -18,9 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import di from "../../../di";
-import { FlagMolecula } from "../moleculas/FlagMoleculat";
-import { IFlagVM } from "../../../vm/flagList";
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import { StringOrNumber } from "@chakra-ui/utils";
 //############################
 interface PropStateTeacher {
@@ -29,31 +26,34 @@ interface PropStateTeacher {
   urlImage: string;
 }
 interface ModalAddFlagProps {
-  FlagVMList: IFlagVM[];
   isOpenModal: boolean;
   handleClickModalFlag(): void;
   SelectTeacher: PropStateTeacher;
+  titleModal: string;
 }
 
 //###########################
-export const ModalAddFlagOrganismo: FC<ModalAddFlagProps> = ({
-  FlagVMList,
+export const ModalCalendarOrganismo: FC<ModalAddFlagProps> = ({
   handleClickModalFlag,
   isOpenModal,
   SelectTeacher,
+  titleModal,
   ...props
 }) => {
   const toast = useToast();
-  const [FlagId, setIdFlag] = useState<StringOrNumber[]>([]);
+  const [Time, setTime] = useState<string>("");
+  const [Calendar, setUrlCalendar] = useState<string>("");
+  const [Check, setCheck] = useState<boolean>(false);
   //
   const handleSubmit = async () => {
     let idTacher = SelectTeacher.id;
     let data = {
-      FlagId,
+      time: Time,
+      url_calendar: Calendar,
     };
     // di.teacher.assignFlagTeacher()
     const resp = await fetch(
-      `http://localhost:4000/data/addFlagToTeachers/${idTacher}`,
+      `http://localhost:4000/data/addCalendarTeacher/${idTacher}`,
       {
         method: "PUT",
         headers: {
@@ -65,14 +65,35 @@ export const ModalAddFlagOrganismo: FC<ModalAddFlagProps> = ({
     if (resp.ok) {
       toast({
         title: "Successful",
-        description: "Languages have been updated",
+        description: "Calendar have been add",
         status: "success",
         duration: 5000,
         isClosable: true,
       });
+      if (Check) {
+        setUrlCalendar("");
+        return;
+      }
       handleClickModalFlag();
     }
   };
+  //
+
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    // console.log(event.target.value);
+    setTime(event.target.value);
+  };
+  //
+  const handleChangueInput = (e: ChangeEvent<HTMLInputElement>) => {
+    // console.log(e.target.value);
+    setUrlCalendar(e.target.value);
+  };
+
+  const handleChecked = (e: ChangeEvent<HTMLInputElement>) => {
+    let checked = e.target.checked;
+    setCheck(checked);
+  };
+
   return (
     <Modal
       isCentered
@@ -83,7 +104,7 @@ export const ModalAddFlagOrganismo: FC<ModalAddFlagProps> = ({
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Choose Languages</ModalHeader>
+        <ModalHeader>{titleModal}</ModalHeader>
         <ModalCloseButton />
         <Divider />
         <ModalBody
@@ -107,23 +128,32 @@ export const ModalAddFlagOrganismo: FC<ModalAddFlagProps> = ({
               {SelectTeacher.nameTeacher}
             </Text>
           </Box>
-          <CheckboxGroup onChange={(val) => setIdFlag(val)}>
-            <Grid
-              gridTemplateColumns={"repeat(2,1fr)"}
-              columnGap="1rem"
-              height="100%"
+          {/*  */}
+          <Box w="50%">
+            <Text fontWeight={"medium"}>Type of event</Text>
+            <Select
+              size="md"
+              onChange={handleChange}
+              placeholder="choose time"
+              mb="2"
             >
-              {FlagVMList.map((i) => (
-                <FlagMolecula
-                  key={i.id}
-                  url_image={i.url_image}
-                  fontSizeText="base"
-                  id={i.id}
-                  name_flag={i.name_flag}
-                />
-              ))}
-            </Grid>
-          </CheckboxGroup>
+              <option value="25">25 min lesson</option>
+              <option value="30">30 min lesson</option>
+              <option value="45">45 min lesson</option>
+              <option value="60">60 min lesson</option>
+            </Select>
+            <Text fontWeight={"medium"}>Calendar url</Text>
+            <Input
+              type="text"
+              placeholder="Url of Ingenio Calendar"
+              mb="2"
+              onChange={handleChangueInput}
+              value={Calendar}
+            />
+            <Checkbox onChange={handleChecked}>
+              <Text>Add more event types</Text>
+            </Checkbox>
+          </Box>
         </ModalBody>
         <ModalFooter>
           <Button colorScheme={"blue"} onClick={handleSubmit}>

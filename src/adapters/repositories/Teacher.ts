@@ -1,6 +1,4 @@
-// import { IBoardRepository } from "@domains/useCases/repository-interfaces/iBoard";
 import { ITeacherRepository } from "../../domains/useCases/repository-interfaces/iTeacher";
-// import BoardDTO, { IBoardDTO, IBoardParams } from "@domains/dto/BoardDTO";
 import TeacherDTO, {
   ITeacherDTO,
   ITeacherParams,
@@ -8,6 +6,7 @@ import TeacherDTO, {
 import Url from "../../envConfig";
 
 import { IHttp } from "../infrastructures/interfaces/iHttp";
+import { IAddAsingFlagDTO } from "../../domains/dto/addFlagToTeacher";
 
 class TeacherRepository implements ITeacherRepository {
   constructor(readonly http: IHttp) {}
@@ -45,6 +44,7 @@ class TeacherRepository implements ITeacherRepository {
       },
     });
   }
+
   async updateTeacher(data: ITeacherDTO, id: string): Promise<Object> {
     console.log("datoss", data);
     return await this.http.request({
@@ -56,13 +56,21 @@ class TeacherRepository implements ITeacherRepository {
       },
     });
   }
-
+  //
   async createTeacher(data: ITeacherDTO, token: string): Promise<Object> {
     console.log(data);
     return await this.http.request({
       method: "POST",
       url: `${Url.apiUrl}/data/createTeacher`,
       body: data,
+    });
+  }
+  //
+  async assignFlagTeacher(flagData: IAddAsingFlagDTO): Promise<boolean> {
+    return await this.http.request({
+      method: "PUT",
+      url: `${Url.apiUrl}/data/addFlagToTeachers/${flagData.idTeacher}`,
+      body: flagData.flagId,
     });
   }
 }

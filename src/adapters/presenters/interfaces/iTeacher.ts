@@ -1,5 +1,5 @@
-// import { IBoardEntity } from "@domains/aggregates/interfaces/iBoard";
 import { ITeacherEntity } from "../../../domains/aggregates/interfaces/iTeacher";
+import { IAddAsingFlagDTO } from "../../../domains/dto/addFlagToTeacher";
 
 export interface ITeacherPresenter {
   getTeachers(): Promise<Array<ITeacherEntity>>;
@@ -7,4 +7,5 @@ export interface ITeacherPresenter {
   removeTeacher(id: string): Promise<Object>;
   updateTeacher(data: ITeacherEntity, id: string): Promise<Object>;
   createTeacher(data: ITeacherEntity, token: string): Promise<Object>;
+  assignFlagTeacher(flagId: IAddAsingFlagDTO): Promise<boolean>;
 }

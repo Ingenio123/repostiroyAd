@@ -1,18 +1,18 @@
 import { FC } from "react";
-import { Radio, RadioProps, Text } from "@chakra-ui/react";
+import { CheckboxProps, Checkbox } from "@chakra-ui/react";
 
-interface IProps extends RadioProps {
-  text: string;
+interface IProps extends CheckboxProps {
   value: string;
-  fontSizeText: "lg" | "md";
 }
 
-export const RadioAtom = ({ text, value, fontSizeText, ...props }: IProps) => {
+export const RadioAtom: FC<IProps> = ({
+  value,
+  children,
+  ...props
+}: IProps) => {
   return (
-    <Radio {...props} value={value}>
-      <Text as="span" fontSize={fontSizeText}>
-        {text}
-      </Text>
-    </Radio>
+    <Checkbox {...props} value={value} _hover={{ cursor: "pointer" }}>
+      {children}
+    </Checkbox>
   );
 };

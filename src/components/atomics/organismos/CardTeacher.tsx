@@ -15,6 +15,7 @@ import { ModalMolecula } from "../../../components/atomics/moleculas/ModalMolecu
 import { ITeacherEntity } from "../../../domains/aggregates/interfaces/iTeacher";
 
 import { ModalAddFlagOrganismo } from "./ModalFlag";
+import { ModalCalendarOrganismo } from "./ModalCalendarOrganismo";
 import { FC } from "react";
 import { IFlagVM } from "../../../vm/flagList";
 
@@ -39,12 +40,14 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [State, setState] = useState<any>("");
   const [ModalFlag, setModalFlag] = useState<boolean>(false);
+  const [ModalCalendar, setModalCalendar] = useState<boolean>(false);
   const [id, setId] = useState<any>("");
   const [SelectTeacher, setSelectTeacher] = useState<PropStateTeacher>({
     id: "",
     nameTeacher: "",
     urlImage: "",
   });
+
   const history = useHistory();
 
   const Dropdown = (index: any) => {
@@ -72,6 +75,10 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
       nameTeacher,
       urlImage,
     });
+  };
+
+  const handleClickModalCalendar = () => {
+    setModalCalendar((prev) => !prev);
   };
 
   return (
@@ -142,6 +149,17 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                           alignSelf={"flex-end"}
                           justifySelf={"flex-end"}
                           size={"sm"}
+                          colorScheme="blue"
+                          bg="blue.500"
+                          mr="20px"
+                          onClick={() => handleClick(item.id)}
+                        >
+                          Profile
+                        </Button>
+                        <Button
+                          alignSelf={"flex-end"}
+                          justifySelf={"flex-end"}
+                          size={"sm"}
                           bg="blue.500"
                           colorScheme="blue"
                           mr="20px"
@@ -150,18 +168,36 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                             handleClickModalFlag();
                           }}
                         >
-                          Add languages
+                          Languages
                         </Button>
                         <Button
                           alignSelf={"flex-end"}
                           justifySelf={"flex-end"}
                           size={"sm"}
-                          bg="green.500"
-                          colorScheme="green"
+                          bg="blue.500"
+                          colorScheme="blue"
                           mr="20px"
-                          onClick={() => handleClick(item.id)}
+                          onClick={() => {
+                            handleSelect(item.id, item.name, item.imgUrl);
+                            handleClickModalCalendar();
+                            //
+                          }}
                         >
-                          Update
+                          Calendar
+                        </Button>
+                        <Button
+                          alignSelf={"flex-end"}
+                          justifySelf={"flex-end"}
+                          size={"sm"}
+                          bg="blue.500"
+                          colorScheme="blue"
+                          mr="20px"
+                          onClick={() => {
+                            handleSelect(item.id, item.name, item.imgUrl);
+                            handleClickModalFlag();
+                          }}
+                        >
+                          Photo
                         </Button>
                       </div>
 
@@ -194,6 +230,12 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
         handleClickModalFlag={handleClickModalFlag}
         isOpenModal={ModalFlag}
         FlagVMList={FlagVMList}
+        SelectTeacher={SelectTeacher}
+      />
+      <ModalCalendarOrganismo
+        titleModal="Add Calendar"
+        handleClickModalFlag={handleClickModalCalendar}
+        isOpenModal={ModalCalendar}
         SelectTeacher={SelectTeacher}
       />
     </>
