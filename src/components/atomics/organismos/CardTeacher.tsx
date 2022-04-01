@@ -18,6 +18,7 @@ import { ModalAddFlagOrganismo } from "./ModalFlag";
 import { ModalCalendarOrganismo } from "./ModalCalendarOrganismo";
 import { FC } from "react";
 import { IFlagVM } from "../../../vm/flagList";
+import { ModalImageUpdateOrganismo } from "./ModalUpdataImageOrganismo";
 
 // ####################################
 interface IPropsCard {
@@ -41,6 +42,8 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
   const [State, setState] = useState<any>("");
   const [ModalFlag, setModalFlag] = useState<boolean>(false);
   const [ModalCalendar, setModalCalendar] = useState<boolean>(false);
+  const [ModalUpdateImage, setModalUpdateImage] = useState<boolean>(false);
+  //
   const [id, setId] = useState<any>("");
   const [SelectTeacher, setSelectTeacher] = useState<PropStateTeacher>({
     id: "",
@@ -79,6 +82,9 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
 
   const handleClickModalCalendar = () => {
     setModalCalendar((prev) => !prev);
+  };
+  const handleClickMolalUpdateImage = () => {
+    setModalUpdateImage((prev) => !prev);
   };
 
   return (
@@ -194,7 +200,7 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                           mr="20px"
                           onClick={() => {
                             handleSelect(item.id, item.name, item.imgUrl);
-                            handleClickModalFlag();
+                            handleClickMolalUpdateImage();
                           }}
                         >
                           Photo
@@ -236,6 +242,12 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
         titleModal="Add Calendar"
         handleClickModalFlag={handleClickModalCalendar}
         isOpenModal={ModalCalendar}
+        SelectTeacher={SelectTeacher}
+      />
+      <ModalImageUpdateOrganismo
+        titleModal="Update image teacher"
+        handleClickModalFlag={handleClickMolalUpdateImage}
+        isOpenModal={ModalUpdateImage}
         SelectTeacher={SelectTeacher}
       />
     </>

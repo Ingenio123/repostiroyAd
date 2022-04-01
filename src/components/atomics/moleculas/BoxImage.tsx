@@ -1,7 +1,6 @@
 import { WrapItem, Avatar, Input } from "@chakra-ui/react";
 import { BoxAtom } from "../atomo/Card";
 import { ChangeEvent, useRef } from "react";
-import { InputImage } from "../atomo/InputImage";
 
 type InputEvent = ChangeEvent<HTMLInputElement>;
 
@@ -25,19 +24,12 @@ export const BoxImageMolecula = ({ urlImage, onChanguePicture }: any) => {
         <Input
           hidden
           type="file"
-          accept="image/png, image/jpeg"
+          accept="image/png,image/jpeg"
           ref={(el) => {
             hiddenInput.current = el;
           }}
           onChange={onChanguePicture}
         />
-        {/* <Input
-          type="file"
-          accept="image/png, image/jpeg"
-          // ref={}
-          // display="none"
-          onChange={onChanguePicture}
-        /> */}
       </WrapItem>
     </BoxAtom>
   );

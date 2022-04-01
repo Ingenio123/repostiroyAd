@@ -65,7 +65,7 @@ export const ModalCalendarOrganismo: FC<ModalAddFlagProps> = ({
     if (resp.ok) {
       toast({
         title: "Successful",
-        description: "Calendar have been add",
+        description: "The event's url has been added",
         status: "success",
         duration: 5000,
         isClosable: true,
