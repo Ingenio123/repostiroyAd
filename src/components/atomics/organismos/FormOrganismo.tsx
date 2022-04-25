@@ -57,7 +57,7 @@ export const FormOrganismo = ({ ...props }: any) => {
   //
   const mySubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+    // console.log(e.currentTarget);
     const formData = new FormData(e.currentTarget);
     console.log("submited");
 

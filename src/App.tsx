@@ -8,6 +8,7 @@ import UpdateTeacher from "./screens/Admin/UpdateTeacher";
 import { CreateCuponCode } from "./screens/Admin/CreateCuponCode";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreateTeacher } from "./screens/Admin/CreateTeacher";
+import { CreateReviews } from "./screens/Admin/CreateReviews";
 
 //
 const App: FC = () => {
@@ -46,6 +47,12 @@ const App: FC = () => {
             exact
             path="/admin/create/teacher"
             component={CreateTeacher}
+            isAuthenticated={true}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/create/reviews"
+            component={CreateReviews}
             isAuthenticated={true}
           />
         </Switch>

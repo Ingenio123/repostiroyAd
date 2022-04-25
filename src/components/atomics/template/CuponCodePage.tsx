@@ -1,6 +1,6 @@
 import { Stack, Heading, useToast } from "@chakra-ui/react";
 import FormCuponCode from "../organismos/FormCupon";
-import SearchMolecula from "../moleculas/SearchMolecula";
+// import SearchMolecula from "../moleculas/SearchMolecula";
 import GirdBodyMolecula from "../moleculas/GridBodyMolecula";
 import FormLegend from "../atomo/FormLegend";
 import di from "../../../di";

@@ -107,7 +107,7 @@ const Nav = () => {
                 bg: useColorModeValue("gray.200", "gray.700"),
               }}
               as={RouterLink}
-              to="/admin/create/cuponcode"
+              to="/admin/create/reviews"
             >
               Reviews
             </Link>
