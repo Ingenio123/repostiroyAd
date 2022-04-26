@@ -4,7 +4,7 @@ import { Box, Text, Flex, Textarea } from "@chakra-ui/react";
 type TextAreaFieldProps = {
   label: string;
   placeholder: string;
-  type?: string;
+  type?: string | "string";
   gridArea?: { [key: string]: string };
   errors: { message: string } | undefined;
   [prop: string]: unknown;
@@ -47,11 +47,11 @@ const TextAreaField = forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
         <Textarea
           placeholder={placeholder}
           ref={ref}
-          {...other}
           type={type}
           border="1px solid"
           borderColor={props["errors"] ? "inputError" : "inputBorder"}
           id={label}
+          {...other}
         />
       </Box>
     );
