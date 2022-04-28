@@ -8,8 +8,8 @@ interface IProps {
 
 export const InputTextAreaAtom = ({ htmlFor, label, placeholder }: IProps) => {
   return (
-    <FormControl widt="100%">
-      <FormLabel htmlForm={htmlFor}>{label}</FormLabel>
+    <FormControl width="100%">
+      <FormLabel htmlFor={htmlFor}>{label}</FormLabel>
       <Textarea placeholder={placeholder} />
     </FormControl>
   );

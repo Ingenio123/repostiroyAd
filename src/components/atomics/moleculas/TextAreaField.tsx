@@ -47,7 +47,6 @@ const TextAreaField = forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
         <Textarea
           placeholder={placeholder}
           ref={ref}
-          type={type}
           border="1px solid"
           borderColor={props["errors"] ? "inputError" : "inputBorder"}
           id={label}

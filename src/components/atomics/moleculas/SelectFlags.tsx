@@ -7,7 +7,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import Flag from "react-world-flags";
+// import Flag from "react-world-flags";
 import { HiFlag } from "react-icons/hi";
 
 interface IProps {
@@ -47,7 +47,10 @@ const SelectCountryAndFlags = ({
         <Flex width="100%" alignItems={"center"}>
           {SelectCountry !== "" ? (
             <Box mr="30px" width="10%" flex={1}>
-              <Flag height="1rem" code={SelectCountry} />
+              <img
+                height="1rem"
+                src={`https://countryflagsapi.com/svg/${SelectCountry}`}
+              />
             </Box>
           ) : (
             <HiFlag />

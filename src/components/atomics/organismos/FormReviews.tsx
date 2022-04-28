@@ -4,7 +4,7 @@ import TextAreaField from "../moleculas/TextAreaField";
 import FormLegend from "../atomo/FormLegend";
 import { Button } from "@chakra-ui/react";
 import SelectCountryAndFlags from "../moleculas/SelectFlags";
-import { CONTRIES } from "../../../utils/contry";
+import { Contries as CONTRIES } from "../../../utils/listContries";
 import { BoxImageMolecula } from "../moleculas/BoxImage";
 import { useState, FormEvent, ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
@@ -32,7 +32,7 @@ export const FormReviews = () => {
   const countryOptions = CONTRIES.map((i: any) => {
     return {
       label: i.name,
-      iso: i.iso3,
+      iso: i.code,
     };
   });
   const onChangePicture = (e: any) => {
@@ -48,7 +48,8 @@ export const FormReviews = () => {
   const handleChangue = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     // console.log(value);
-    setSelectCountry(value);
+
+    setSelectCountry(value.toLowerCase());
   };
 
   const mySubmit = (e: React.FormEvent<HTMLFormElement>) => {
