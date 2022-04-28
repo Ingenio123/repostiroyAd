@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import { Heading, Stack } from "@chakra-ui/react";
 import { FormReviews } from "../organismos/FormReviews";
+import di from "../../../di";
+import { useReviewListState } from "../../../hooks/ReviewRecoil";
+
 const CreateReviewsPage = () => {
+  useEffect(() => {
+    const asyncFunction = async () => {
+      await di.reviews.getReviews();
+    };
+    asyncFunction();
+    return () => {};
+  }, []);
+
   return (
     <>
       <Heading

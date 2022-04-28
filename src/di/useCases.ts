@@ -4,6 +4,7 @@ import IUseCases from "./interfaces/iUseCases";
 import Teacher from "../domains/useCases/Teacher";
 import CuponCode from "../domains/useCases/CuponCode";
 import Flag from "../domains/useCases/Flag";
+import Reviews from "../domains/useCases/Reviews";
 
 const UseCases = (repositories: IRepositories): IUseCases => {
   return {
@@ -11,6 +12,7 @@ const UseCases = (repositories: IRepositories): IUseCases => {
     teacher: new Teacher(repositories.teacher),
     cupon: new CuponCode(repositories.cupon),
     flag: new Flag(repositories.flag),
+    reviews: new Reviews(repositories.reviews),
   };
 };
 

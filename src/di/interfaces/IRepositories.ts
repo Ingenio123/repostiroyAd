@@ -1,3 +1,4 @@
+import { IReviewRepository } from "./../../domains/useCases/repository-interfaces/iReview";
 import { IFlagRepository } from "./../../domains/useCases/repository-interfaces/iFlag";
 import { ISessionRepository } from "../../domains/useCases/repository-interfaces/iSession";
 import { ITeacherRepository } from "../../domains/useCases/repository-interfaces/iTeacher";
@@ -8,4 +9,5 @@ export default interface IRepositories {
   teacher: ITeacherRepository;
   cupon: ICuponCodeRepository;
   flag: IFlagRepository;
+  reviews: IReviewRepository;
 }

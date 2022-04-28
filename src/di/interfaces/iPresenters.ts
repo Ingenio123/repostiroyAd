@@ -1,3 +1,4 @@
+import { IReviewsPresenters } from "./../../adapters/presenters/interfaces/iReviews";
 import { IFlagPresenter } from "./../../adapters/presenters/interfaces/iFlag";
 import { ICuponCodePresenter } from "../../adapters/presenters/interfaces/iCuponCode";
 import { ISessionPresenter } from "../../adapters/presenters/interfaces/iSession";
@@ -8,4 +9,5 @@ export default interface IPresenters {
   teacher: ITeacherPresenter;
   cupon: ICuponCodePresenter;
   flag: IFlagPresenter;
+  reviews: IReviewsPresenters;
 }

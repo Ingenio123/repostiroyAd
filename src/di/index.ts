@@ -14,4 +14,5 @@ export default {
   teacher: cPresenters.teacher,
   cupon: cPresenters.cupon,
   flag: cPresenters.flag,
+  reviews: cPresenters.reviews,
 } as IPresenters;
