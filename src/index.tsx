@@ -1,3 +1,4 @@
+import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -8,16 +9,16 @@ import { RecoilRoot } from "recoil";
 import Login from "./screens/Login";
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <BrowserRouter>
+    <BrowserRouter>
+      <RecoilRoot>
         <ChakraProvider theme={theme}>
           <App />
           <Switch>
             <Route exact path="/login" component={Login}></Route>
           </Switch>
         </ChakraProvider>
-      </BrowserRouter>
-    </RecoilRoot>
+      </RecoilRoot>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

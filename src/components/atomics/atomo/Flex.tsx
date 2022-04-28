@@ -1,8 +1,9 @@
 import { Flex } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 interface IProps {
   mt?: string;
+  children: ReactNode;
 }
 
 export const FlexAtom: FC<IProps> = ({ children, mt }) => (

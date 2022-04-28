@@ -1,8 +1,12 @@
 import { Container } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Nav from "./Navigate/Nav";
 
-const Layout: FC = ({ children }) => {
+interface Props {
+  children: ReactNode;
+}
+
+const Layout = ({ children }: Props) => {
   return (
     <>
       <Nav />

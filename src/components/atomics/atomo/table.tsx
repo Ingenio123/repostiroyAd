@@ -28,8 +28,16 @@ const AtomTable = ({ data }: any) => {
               <Td>asdasd </Td>
               <Td>asdasd </Td>
               <Td>
-                <ButtonAtom type="button" colorScheme="pink" text="delete" />
-                <ButtonAtom type="button" text="Update" colorScheme="blue" />
+                <ButtonAtom
+                  type="button"
+                  colorScheme="pink"
+                  text="delete"
+                ></ButtonAtom>
+                <ButtonAtom
+                  type="button"
+                  text="Update"
+                  colorScheme="blue"
+                ></ButtonAtom>
               </Td>
             </Tr>
           ))}

@@ -1,20 +1,15 @@
 import { Button } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 interface IProps {
   text?: string;
-  colorScheme: string;
-  type: "submit" | "button" | "reset";
+  colorScheme?: string;
+  type?: "submit" | "button" | "reset";
   width?: string;
+  children?: ReactNode;
 }
 
-const ButtonAtom: FC<IProps> = ({
-  type,
-  width,
-  text,
-  colorScheme,
-  children,
-}) => {
+const ButtonAtom = ({ type, width, text, colorScheme, children }: IProps) => {
   return (
     <Button
       type={type}
