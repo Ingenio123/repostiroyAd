@@ -10,5 +10,17 @@ const colors = {
   inputError: "#EF4444",
   inputBorder: "#A1A1AA",
 };
+const components = {
+  Button: {
+    variants: {
+      personalizado: {
+        bg: "red.300",
+        _hover: {
+          bg: "red.500",
+        },
+      },
+    },
+  },
+};
 
-export default extendTheme({ colors });
+export default extendTheme({ colors, components });

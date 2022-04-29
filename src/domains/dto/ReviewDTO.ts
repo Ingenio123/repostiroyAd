@@ -10,9 +10,9 @@ export interface IReviewsDTO {
 export interface IReviewParams {
   _id: string;
   url_image: string;
-  country_iso: string;
+  countryIso: string;
   name_user: string;
-  language_is_learning: string;
+  languages_is_learning: string;
   description: string;
 }
 
@@ -26,9 +26,9 @@ class ReviewsDTO implements IReviewsDTO {
   //
   constructor(params: IReviewParams) {
     this._id = params._id;
-    this.country_iso = params.country_iso;
+    this.country_iso = params.countryIso;
     this.description = params.description;
-    this.language_is_learning = params.language_is_learning;
+    this.language_is_learning = params.languages_is_learning;
     this.name_user = params.name_user;
     this.url_image = params.url_image;
   }

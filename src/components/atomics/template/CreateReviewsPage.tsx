@@ -1,13 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { Heading, Stack } from "@chakra-ui/react";
 import { FormReviews } from "../organismos/FormReviews";
 import di from "../../../di";
 import { useReviewListState } from "../../../hooks/ReviewRecoil";
+import ReviewVM from "../../../vm/ReviewsList";
+import TableReviews from "../organismos/TableReviews";
 
 const CreateReviewsPage = () => {
+  const [listReviews, setListReviews] = useReviewListState();
+  //
+  const reviewVM = listReviews.map(
+    (reviewEntity) => new ReviewVM(reviewEntity)
+  );
+
   useEffect(() => {
     const asyncFunction = async () => {
-      await di.reviews.getReviews();
+      let datos = await di.reviews.getReviews();
+      setListReviews(datos);
     };
     asyncFunction();
     return () => {};
@@ -26,13 +35,14 @@ const CreateReviewsPage = () => {
         Reviews of Students
       </Heading>
       <Stack
-        border="1px solid blue"
+        // border="1px solid blue"
         width="100%"
         mt="30px"
         spacing="24"
         direction={"row"}
       >
         <FormReviews />
+        <TableReviews listData={reviewVM} />
       </Stack>
     </>
   );

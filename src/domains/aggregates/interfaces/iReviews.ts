@@ -1,5 +1,5 @@
 export interface IReviewEntity {
-  _id?: string;
+  _id: string;
   url_image: string;
   country_iso: string;
   name_user: string;

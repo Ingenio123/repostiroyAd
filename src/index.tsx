@@ -7,6 +7,7 @@ import theme from "./theme";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import Login from "./screens/Login";
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

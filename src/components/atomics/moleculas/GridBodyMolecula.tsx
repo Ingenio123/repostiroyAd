@@ -27,20 +27,3 @@ const GridBodyMolecula: FC<IProps> = ({ deleteCoupon }) => {
 };
 
 export default GridBodyMolecula;
-
-//  return (
-//    <GridBodyatom gridTemplateColumns="repeat(5,1fr)">
-//      {/* fontWeight="700" size="1rem" */}
-//      {cuponCodeVM.length > 0 && (
-//        <>
-//          {cuponCodeVM.map((e) => (
-//            <Box as="div" textAlign={"center"}>
-//              <TextAtom size="1rem" color="gray.800" fontWeight="bold">
-//                {e.valor}
-//              </TextAtom>
-//            </Box>
-//          ))}
-//        </>
-//      )}
-//    </GridBodyatom>
-//  );

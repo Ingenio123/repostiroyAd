@@ -91,7 +91,7 @@ export const FormReviews = () => {
     <>
       <Box
         px={{ base: "1rem", sm: ".5rem" }}
-        maxWidth={{ lg: "45.625rem", base: "sm" }}
+        maxWidth={{ lg: "30rem", base: "sm" }}
         w="100%"
         // border="1px solid red"
       >
