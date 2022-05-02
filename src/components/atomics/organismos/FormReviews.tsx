@@ -91,11 +91,11 @@ export const FormReviews = () => {
     <>
       <Box
         px={{ base: "1rem", sm: ".5rem" }}
-        maxWidth={{ lg: "30rem", base: "sm" }}
+        maxWidth={{ base: "sm" }}
         w="100%"
         // border="1px solid red"
       >
-        <FormLegend>Create Reviews</FormLegend>
+        <FormLegend>Create a Review</FormLegend>
         <BoxImageMolecula
           onChanguePicture={onChangePicture}
           urlImage={ImgData}
@@ -106,14 +106,14 @@ export const FormReviews = () => {
           label="Select Country"
           options={countryOptions}
         />
-        <FormMoleculaO handleSubmit={mySubmit}>
+        <FormMoleculaO width="100%" handleSubmit={mySubmit}>
           <FormField
             {...register("name_user", {
               required: "field can't be empty",
             })}
             aria-invalid={errors.name_user ? "true" : "false"}
             errors={errors.name_user}
-            label={"Enter name user"}
+            label={"Student's name"}
             placeholder="Jhon Doe"
             type="string"
           />
@@ -123,7 +123,7 @@ export const FormReviews = () => {
             })}
             aria-invalid={errors.languages_is_learning ? "true" : "false"}
             errors={errors.languages_is_learning}
-            label={"Language is Learning"}
+            label={"Language"}
             placeholder="English"
             type="string"
           />
@@ -132,7 +132,7 @@ export const FormReviews = () => {
               required: "field can't be empty",
             })}
             errors={errors.description}
-            label="Description"
+            label="Review"
             placeholder="lorem  ipsum!"
             type="string"
           />
@@ -141,7 +141,7 @@ export const FormReviews = () => {
             type="submit"
             width="50%"
             colorScheme="blue"
-            m="0 auto"
+            m="1rem auto"
           >
             Submit
           </Button>

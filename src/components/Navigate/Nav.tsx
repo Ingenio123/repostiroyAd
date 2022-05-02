@@ -128,6 +128,23 @@ const Nav = () => {
             >
               Lesson Packages
             </Link>
+            <Link
+              rounded={"md"}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              px="2"
+              lineHeight="normal"
+              fontWeight="medium"
+              _hover={{
+                textDecoration: "none",
+                bg: useColorModeValue("gray.200", "gray.700"),
+              }}
+              as={RouterLink}
+              to="/admin/create/cuponcode"
+            >
+              Promos
+            </Link>
             {/* <NavLink>Lesson Packages</NavLink>
             <NavLink>Lesson Packages</NavLink> */}
             {/* maximum two (2) links/menu  */}

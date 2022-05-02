@@ -6,6 +6,9 @@ class ReviewPresenter implements IReviewRepository {
   async getReviews(): Promise<IReviewsDTO[]> {
     return await this.useCases.getReviews();
   }
+  async deleteReview(id: string): Promise<boolean> {
+    return await this.useCases.deleteReview(id);
+  }
 }
 
 export default ReviewPresenter;

@@ -15,6 +15,14 @@ class ReviewsRepository implements IReviewRepository {
       (review: IReviewParams) => new ReviewsDTO(review)
     );
   }
+  async deleteReview(id: string): Promise<boolean> {
+    const response = await this.http.request({
+      method: "DELETE",
+      url: `${URI.apiUrl}/v1/data/delete/review/${id}`,
+    });
+    let res = !response.error && true;
+    return res;
+  }
 }
 
 export default ReviewsRepository;

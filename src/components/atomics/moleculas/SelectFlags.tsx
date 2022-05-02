@@ -25,8 +25,10 @@ const SelectCountryAndFlags = ({
 }: IProps) => {
   return (
     <>
-      <Box width="20%" position="relative">
-        <Text as="label">{label}</Text>
+      <Box width="100%" position="relative">
+        <Text as="label" _hover={{ cursor: "pointer", color: "red" }}>
+          {label}
+        </Text>
         <Select
           opacity={0}
           height="100%"
@@ -44,16 +46,18 @@ const SelectCountryAndFlags = ({
             </option>
           ))}
         </Select>
-        <Flex width="100%" alignItems={"center"}>
+        <Flex width="30%" alignItems={"center"} mb="1.5">
           {SelectCountry !== "" ? (
             <Box mr="30px" width="10%" flex={1}>
               <img
                 height="1rem"
                 src={`https://countryflagsapi.com/svg/${SelectCountry}`}
+                alt="images flags"
               />
             </Box>
           ) : (
-            <HiFlag />
+            <></>
+            // <HiFlag />
           )}
         </Flex>
       </Box>

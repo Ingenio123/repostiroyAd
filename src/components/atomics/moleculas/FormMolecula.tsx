@@ -5,15 +5,15 @@ import { BoxAtom } from "../atomo/Card";
 interface IProps extends HTMLAttributes<HTMLFormElement> {
   children: ReactNode;
   handleSubmit: any;
+  width?: string;
 }
-export const FormMoleculaO = ({
-  handleSubmit,
-  children,
-
-  ...props
-}: IProps) => {
+export const FormMoleculaO = ({ handleSubmit, children, ...props }: IProps) => {
   return (
-    <BoxAtom width="50%" display="block" m="0 auto">
+    <BoxAtom
+      width={props.width ? props.width : "50%"}
+      display="block"
+      m="0 auto"
+    >
       <form style={{ width: "100%" }} onSubmit={handleSubmit} {...props}>
         {children}
       </form>

@@ -13,6 +13,9 @@ import {
 import { IReviewVM } from "../../../vm/ReviewsList";
 import { ModalReviews } from "../organismos/ModalReviews";
 import { useState, useCallback } from "react";
+import { useReviewListState } from "../../../hooks/ReviewRecoil";
+import di from "../../../di";
+import FormLegend from "../atomo/FormLegend";
 
 interface Props {
   listData: Array<IReviewVM>;
@@ -20,21 +23,28 @@ interface Props {
 
 const TableReviews = ({ listData }: Props) => {
   const [OpenModal, setModal] = useState<boolean>(false);
-  const [Id, setId] = useState<string | undefined>("");
+  const [Id, setId] = useState<string>("");
   const toast = useToast();
+  const [listReviews, setListReviews] = useReviewListState();
 
   const closeModal = useCallback(() => {
     setModal(false);
   }, []);
-  const openModal = useCallback((id: string | undefined) => {
+  const openModal = useCallback((id: string): void => {
     setModal(true);
     setId(id);
   }, []);
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    let datos = await di.reviews.deleteReview(Id);
+    if (!datos) {
+      return closeModal();
+    }
+    const reviews = listReviews.filter((datos) => datos._id !== Id);
+    setListReviews(reviews);
     toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
+      title: "Successful.",
+      description: "This review has been deleted",
       status: "success",
       duration: 9000,
       isClosable: true,
@@ -44,7 +54,8 @@ const TableReviews = ({ listData }: Props) => {
 
   return (
     <>
-      <TableContainer m="0">
+      <TableContainer width={"100%"}>
+        <FormLegend>View o Delete Reviews</FormLegend>
         <Table variant="simple" size="sm">
           <Thead>
             <Tr>
@@ -62,11 +73,11 @@ const TableReviews = ({ listData }: Props) => {
                 <Td>{items.name_user}</Td>
                 <Td>{items.languages_is_learning}</Td>
                 <Td>
-                  <Text isTruncated maxW="8rem">
+                  <Text isTruncated maxW="25rem">
                     {items.description}
                   </Text>
                 </Td>
-                {/* <Td>{items.country_iso}</Td> */}
+
                 <Td>
                   <Button
                     colorScheme={"red"}
@@ -76,9 +87,6 @@ const TableReviews = ({ listData }: Props) => {
                   >
                     Delete
                   </Button>
-                  <Button colorScheme={"blue"} size="sm">
-                    View
-                  </Button>
                 </Td>
               </Tr>
             ))}
@@ -86,7 +94,7 @@ const TableReviews = ({ listData }: Props) => {
         </Table>
       </TableContainer>
       <ModalReviews
-        title="modal title"
+        title="Delete?"
         onClose={closeModal}
         openModal={OpenModal}
         handleDelete={handleDelete}

@@ -9,7 +9,7 @@ export const BoxImageMolecula = ({ urlImage, onChanguePicture }: any) => {
   let hiddenInput = useRef<HTMLInputElement | null>(null);
   const hanldeClick = () => hiddenInput.current?.click();
   return (
-    <BoxAtom >
+    <BoxAtom display={"flex"} justifyContent="center">
       <WrapItem>
         <Avatar
           size="2xl"

@@ -6,6 +6,9 @@ class ReviewsUseCases implements IReviewsUseCases {
   async getReviews(): Promise<IReviewsDTO[]> {
     return await this.reviewRepo.getReviews();
   }
+  async deleteReview(id: string): Promise<boolean> {
+    return await this.reviewRepo.deleteReview(id);
+  }
 }
 
 export default ReviewsUseCases;

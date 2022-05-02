@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from "react";
-import { Heading, Stack } from "@chakra-ui/react";
+import { Heading, Stack, HStack } from "@chakra-ui/react";
 import { FormReviews } from "../organismos/FormReviews";
 import di from "../../../di";
 import { useReviewListState } from "../../../hooks/ReviewRecoil";
@@ -34,13 +34,7 @@ const CreateReviewsPage = () => {
       >
         Reviews of Students
       </Heading>
-      <Stack
-        // border="1px solid blue"
-        width="100%"
-        mt="30px"
-        spacing="24"
-        direction={"row"}
-      >
+      <Stack width="100%" mt="30px" direction={"row"}>
         <FormReviews />
         <TableReviews listData={reviewVM} />
       </Stack>

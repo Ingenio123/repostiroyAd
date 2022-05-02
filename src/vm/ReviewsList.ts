@@ -1,6 +1,6 @@
 import { IReviewEntity } from "../domains/aggregates/interfaces/iReviews";
 export interface IReviewVM {
-  _id?: string;
+  _id: string;
   languages_is_learning: string;
   name_user: string;
   description: string;

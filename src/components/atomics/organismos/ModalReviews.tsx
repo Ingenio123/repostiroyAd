@@ -31,12 +31,12 @@ export const ModalReviews = ({
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Estas Seguro que deseas eliminar?</Text>
+            <Text>Are you sure you want to delete this review?</Text>
           </ModalBody>
 
           <ModalFooter>
             <Button variant="ghost" mr={3} onClick={onClose}>
-              Close
+              Cancel
             </Button>
             <Button colorScheme="blue" onClick={handleDelete}>
               Confirm
