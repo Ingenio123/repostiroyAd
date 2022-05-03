@@ -6,7 +6,7 @@ import { Button } from "@chakra-ui/react";
 import SelectCountryAndFlags from "../moleculas/SelectFlags";
 import { Contries as CONTRIES } from "../../../utils/listContries";
 import { BoxImageMolecula } from "../moleculas/BoxImage";
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 import Url from "../../../envConfig";
 import { FormMoleculaO } from "../moleculas/FormMolecula";
@@ -72,13 +72,13 @@ export const FormReviews = () => {
         method: "POST",
       });
       const datos = await resp.json();
-      console.log(datos);
+      // console.log(datos);
       reset({ description: "", languages_is_learning: "", name_user: "" });
       setSelectCountry("");
       setImgData("");
       toast({
-        title: "Account created.",
-        description: "We've created your account for you.",
+        title: "Successful.",
+        description: "The review has been submitted.",
         status: "success",
         variant: "subtle",
         duration: 9000,

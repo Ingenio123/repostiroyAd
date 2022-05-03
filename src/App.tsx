@@ -9,6 +9,7 @@ import { CreateCuponCode } from "./screens/Admin/CreateCuponCode";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreateTeacher } from "./screens/Admin/CreateTeacher";
 import { CreateReviews } from "./screens/Admin/CreateReviews";
+import { CreatePromoPages } from "./screens/Admin/CreatePromo";
 
 //
 const App: FC = () => {
@@ -53,6 +54,12 @@ const App: FC = () => {
             exact
             path="/admin/create/reviews"
             component={CreateReviews}
+            isAuthenticated={true}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/create/promo"
+            component={CreatePromoPages}
             isAuthenticated={true}
           />
         </Switch>

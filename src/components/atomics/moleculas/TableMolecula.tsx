@@ -80,7 +80,7 @@ export const TableMolecula: FC<TableMoleculaProps> = ({
               <Td fontWeight="medium">Coupon Name</Td>
               <Td fontWeight="medium">Discount</Td>
               <Td fontWeight="medium">N° uses</Td>
-              <Td fontWeight="medium">Status</Td>
+              {/* <Td fontWeight="medium">Status</Td> */}
               <Td fontWeight="medium">Expiration date</Td>
             </Tr>
           </Thead>
@@ -91,9 +91,9 @@ export const TableMolecula: FC<TableMoleculaProps> = ({
                   <Td textAlign={"center"}>{e.code}</Td>
                   <Td textAlign={"center"}>{e.valor}</Td>
                   <Td textAlign={"center"}>{e.numberUses}</Td>
-                  <Td textAlign={"center"}>
+                  {/* <Td textAlign={"center"}>
                     {e.caducado ? "Expired" : "Active"}
-                  </Td>
+                  </Td> */}
                   <Td textAlign={"center"}>{FormatDate(e.expiresCode)}</Td>
                   <Td display="flex">
                     <Button

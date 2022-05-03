@@ -1,4 +1,9 @@
+import { FormCreatePromo } from "../organismos/FormCreatePromo";
 const PromoDefault = () => {
-  return <></>;
+  return (
+    <>
+      <FormCreatePromo />
+    </>
+  );
 };
 export { PromoDefault };

@@ -3,7 +3,7 @@ import { BoxAtom } from "../atomo/Card";
 
 // import {}  from '../atomo/'
 interface IProps extends HTMLAttributes<HTMLFormElement> {
-  children: ReactNode;
+  children?: ReactNode;
   handleSubmit: any;
   width?: string;
 }

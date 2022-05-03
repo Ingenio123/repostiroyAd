@@ -9,6 +9,8 @@ import {
   Button,
   Text,
   useToast,
+  Box,
+  Icon,
 } from "@chakra-ui/react";
 import { IReviewVM } from "../../../vm/ReviewsList";
 import { ModalReviews } from "../organismos/ModalReviews";
@@ -16,6 +18,7 @@ import { useState, useCallback } from "react";
 import { useReviewListState } from "../../../hooks/ReviewRecoil";
 import di from "../../../di";
 import FormLegend from "../atomo/FormLegend";
+import { IoReload } from "react-icons/io5";
 
 interface Props {
   listData: Array<IReviewVM>;
@@ -51,11 +54,32 @@ const TableReviews = ({ listData }: Props) => {
     });
     closeModal();
   };
+  const handleRefresh = async () => {
+    let datos = await di.reviews.getReviews();
+    setListReviews(datos);
+  };
 
   return (
     <>
       <TableContainer width={"100%"}>
         <FormLegend>View o Delete Reviews</FormLegend>
+        <Box
+          as="div"
+          borderRadius={"50%"}
+          backgroundColor="gray.100"
+          width={"36px"}
+          height="36px"
+          display="flex"
+          justifyContent={"center"}
+          alignItems="center"
+          marginLeft={"auto"}
+          marginRight="3rem"
+          marginBottom="1rem"
+          _hover={{ cursor: "pointer", backgroundColor: "gray.300" }}
+          onClick={handleRefresh}
+        >
+          <Icon as={IoReload} boxSize={5} />
+        </Box>
         <Table variant="simple" size="sm">
           <Thead>
             <Tr>
