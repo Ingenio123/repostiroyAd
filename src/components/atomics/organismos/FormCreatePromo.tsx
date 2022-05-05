@@ -22,7 +22,9 @@ const FormCreatePromo = () => {
     formState: { errors },
   } = useForm<InputPromo>({ mode: "onBlur" });
   const [Picture, setPicture] = useState<string | any>("");
-  const [ImageData, setImageData] = useState<any>("");
+  const [ImageData, setImageData] = useState<any>(
+    "https://via.placeholder.com/300"
+  );
   const toast = useToast();
   //
   const onChangePicture = (e: ChangeEvent<HTMLInputElement>) => {
