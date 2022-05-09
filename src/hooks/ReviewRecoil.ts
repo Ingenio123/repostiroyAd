@@ -23,7 +23,7 @@ export const useGetReviewList = () => {
 };
 
 export const useSetReviewList = () => {
-  return useSetRecoilState(reviewsList);
+  return reviewsList;
 };
 
 export const useReviewListState = () => {

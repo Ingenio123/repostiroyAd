@@ -5,6 +5,7 @@ import IRepositories from "./interfaces/IRepositories";
 import CuponCodeRepository from "../adapters/repositories/CuponCode";
 import FlagRepository from "../adapters/repositories/Flag";
 import ReviewsRepository from "../adapters/repositories/Reviews";
+import PromoRepository from "../adapters/repositories/Promo";
 
 const datos = (infrastructure: IInfrastructures): IRepositories => {
   return {
@@ -13,6 +14,7 @@ const datos = (infrastructure: IInfrastructures): IRepositories => {
     cupon: new CuponCodeRepository(infrastructure.http),
     flag: new FlagRepository(infrastructure.http),
     reviews: new ReviewsRepository(infrastructure.http),
+    promo: new PromoRepository(infrastructure.http),
     // board: new BoardRepository(infrastructure.http),
   };
 };

@@ -15,4 +15,5 @@ export default {
   cupon: cPresenters.cupon,
   flag: cPresenters.flag,
   reviews: cPresenters.reviews,
+  promo: cPresenters.promo,
 } as IPresenters;

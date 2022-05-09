@@ -4,6 +4,7 @@ import CuponCodePresenter from "../adapters/presenters/CuponCode";
 import IUseCases from "./interfaces/iUseCases";
 import FlagPresenter from "../adapters/presenters/Flag";
 import ReviewPresenter from "../adapters/presenters/Review";
+import PromoPresenter from "../adapters/presenters/Promo";
 const datos = (useCases: IUseCases) => {
   return {
     session: new SessionPresenter(useCases.session),
@@ -11,6 +12,7 @@ const datos = (useCases: IUseCases) => {
     cupon: new CuponCodePresenter(useCases.cupon),
     flag: new FlagPresenter(useCases.flag),
     reviews: new ReviewPresenter(useCases.reviews),
+    promo: new PromoPresenter(useCases.promo),
   };
 };
 

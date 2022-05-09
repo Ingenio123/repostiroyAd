@@ -4,7 +4,7 @@ import { IPromoUseCases } from "./interfaces/iPromo";
 
 class PromoUseCases implements IPromoUseCases {
   constructor(private readonly promoRepo: IPromoRepository) {}
-  async getPromo(): Promise<Array<IPromoDTO>> {
+  async getPromos(): Promise<Array<IPromoDTO>> {
     return await this.promoRepo.getPromos();
   }
 }
