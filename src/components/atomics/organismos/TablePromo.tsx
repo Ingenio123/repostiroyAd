@@ -19,8 +19,9 @@ import {
   Img,
   Text,
   Select,
+  useToast,
 } from "@chakra-ui/react";
-import { HiX } from "react-icons/hi";
+import URI from "../../../envConfig";
 import FormLegend from "../atomo/FormLegend";
 import { useEffect, useCallback, useState, ChangeEvent } from "react";
 import di from "../../../di";
@@ -38,6 +39,7 @@ type DatosActive = {
 export const TablePromo = () => {
   const [Open, setOpen] = useState(false);
   const [OpenDelete, setOpenDelete] = useState(false);
+  const [IdPromo, setId] = useState<string>("");
   const [DatosActions, setDatosActions] = useState<DatosActive>({
     _id: "",
     promo_title: "",
@@ -46,11 +48,12 @@ export const TablePromo = () => {
     promo_url_picture: "",
     promo_conditions: "",
   });
-  const [Template, setTemplate] = useState<number | string>(0);
+  const [Template, setTemplate] = useState<string>("");
   const [listPromo, setListPromo] = usePromoListState();
   //
   const promoVM = listPromo.map((promoEntity) => new PromoVm(promoEntity));
   //
+  const toast = useToast();
   // const { isOpen, onClose, onOpen } = useDisclosure();
   //
   useEffect(() => {
@@ -83,6 +86,38 @@ export const TablePromo = () => {
 
   const handleChangueSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value !== "") setTemplate(e.target.value);
+  };
+
+  const handleDeleteConfirm = async (id: string) => {
+    let response = await fetch(`${URI.apiUrl}/v1/data/delete/promo/${id}`, {
+      method: "DELETE",
+    });
+    let data = await response.json();
+    if (!data?.error) {
+      const promos = listPromo.filter((datos) => datos._id !== id);
+      setListPromo(promos);
+      handleModalDelete();
+      toast({
+        title: "Promo deleted.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  };
+  //
+  const handleSubmitActive = async (id: string) => {
+    let response = await fetch(
+      `${URI.apiUrl}/v1/data/update/promo/active/${id}?template=${parseInt(
+        Template
+      )}`,
+      {
+        method: "PUT",
+      }
+    );
+    let data = await response.json();
+    console.log(data);
   };
 
   return (
@@ -133,6 +168,7 @@ export const TablePromo = () => {
                         promo_url_picture: item.promo_url_picture,
                       });
                       handleActive();
+                      setId(item._id);
                     }}
                     size="sm"
                     colorScheme={"green"}
@@ -143,7 +179,10 @@ export const TablePromo = () => {
                   <Button
                     size="sm"
                     colorScheme={"red"}
-                    onClick={handleModalDelete}
+                    onClick={() => {
+                      setId(item._id);
+                      handleModalDelete();
+                    }}
                   >
                     Delete
                   </Button>
@@ -321,7 +360,11 @@ export const TablePromo = () => {
             </Select>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => handleSubmitActive(IdPromo)}
+            >
               Submit
             </Button>
             <Button variant="ghost" onClick={handleModal}>
@@ -330,6 +373,7 @@ export const TablePromo = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      {/* ################## Delete Promo ###########################  */}
       <Modal isOpen={OpenDelete} onClose={handleModalDelete}>
         <ModalOverlay />
         <ModalContent>
@@ -340,8 +384,12 @@ export const TablePromo = () => {
             undone.
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Accept
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => handleDeleteConfirm(IdPromo)}
+            >
+              Confirm
             </Button>
             <Button variant="ghost" onClick={handleModalDelete}>
               Cancel
