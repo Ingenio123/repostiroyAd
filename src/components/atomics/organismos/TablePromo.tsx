@@ -161,17 +161,18 @@ export const TablePromo = () => {
           <ModalBody>
             {Template === "1" && (
               <Box
-                display={"flex"}
-                w="100%"
+                w="787px"
+                h="442px"
                 justifyContent={"center"}
+                display="flex"
                 alignItems="center"
+                border="1px solid red"
               >
-                <Box w="100%" h="auto">
-                  <Img src={DatosActions.promo_url_picture} height="100%" />
+                <Box w="auto" h="auto">
+                  <Img src={DatosActions.promo_url_picture} />
                 </Box>
 
                 <Box
-                  w="100%"
                   display={"flex"}
                   flexDirection="column"
                   justifyContent={"center"}
