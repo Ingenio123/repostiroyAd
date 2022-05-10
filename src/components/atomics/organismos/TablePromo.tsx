@@ -20,6 +20,7 @@ import {
   Text,
   Select,
 } from "@chakra-ui/react";
+import { HiX } from "react-icons/hi";
 import FormLegend from "../atomo/FormLegend";
 import { useEffect, useCallback, useState, ChangeEvent } from "react";
 import di from "../../../di";
@@ -102,7 +103,11 @@ export const TablePromo = () => {
             {promoVM.map((item) => (
               <Tr key={item._id}>
                 <Td>{item.promo_titile}</Td>
-                <Td>{item.promo_description}</Td>
+                <Td>
+                  <Text isTruncated maxW="10rem">
+                    {item.promo_description}
+                  </Text>
+                </Td>
                 <Td>{item.promo_code}</Td>
                 <Td>
                   {false ? (
@@ -155,7 +160,7 @@ export const TablePromo = () => {
         size={"full"}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent backgroundColor="trueGray.500">
           <ModalHeader>Active Promo</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -163,13 +168,24 @@ export const TablePromo = () => {
               <Box
                 w="787px"
                 h="442px"
+                margin="0 auto"
                 justifyContent={"center"}
                 display="flex"
                 alignItems="center"
-                border="1px solid red"
+                boxShadow={"md"}
+                mb="3rem"
+                borderRadius={"md"}
+                overflow={"hidden"}
+                position="relative"
+                backgroundColor="white"
+                columnGap={"20px"}
               >
-                <Box w="auto" h="auto">
-                  <Img src={DatosActions.promo_url_picture} />
+                <Box w="420px" h="100%">
+                  <Img
+                    src={DatosActions.promo_url_picture}
+                    objectFit="cover"
+                    height="100%"
+                  />
                 </Box>
 
                 <Box
@@ -177,38 +193,128 @@ export const TablePromo = () => {
                   flexDirection="column"
                   justifyContent={"center"}
                   alignItems="center"
+                  h="100%"
+                  w="360px"
+                  pr="20px"
                 >
                   <Text
                     as="h3"
                     fontFamily={"Helvetica"}
                     fontWeight={"semibold"}
-                    fontSize="2xl"
+                    fontSize="4xl"
+                    lineHeight={"normal"}
+                    mb="1rem"
                   >
                     {DatosActions.promo_title}
                   </Text>
-                  <Text fontSize="md" fontFamily={"Helvetica"}>
+                  <Text
+                    fontSize="2xl"
+                    fontWeight={"light"}
+                    fontFamily={"Helvetica"}
+                    mb="1rem"
+                    textAlign={"center"}
+                    lineHeight="normal"
+                  >
                     {DatosActions.promo_description}
                   </Text>
-                  <Text fontFamily={"Helvetica"}>
+                  <Text
+                    fontWeight={"bold"}
+                    fontSize="3xl"
+                    fontFamily={"Helvetica"}
+                    lineHeight="normal"
+                    mb="1rem"
+                  >
                     {DatosActions.promo_cupon}
                   </Text>
-                  <Text fontFamily={"Helvetica"}>
-                    {DatosActions.promo_conditions}
+
+                  <Button colorScheme="brand" minWidth={"200px"} mb="3rem">
+                    Buy Now
+                  </Button>
+                  <Text
+                    fontSize="sm"
+                    fontFamily={"Helvetica"}
+                    textAlign="center"
+                  >
+                    "{DatosActions.promo_conditions}"
                   </Text>
                 </Box>
               </Box>
             )}
-            {/* <Box w="100%" display={"flex"} flexDirection="column">
-                  <Text as="h3" fontWeight={"semibold"} fontSize="2xl">
+            {Template === "2" && (
+              <Box
+                w="787px"
+                h="442px"
+                margin="0 auto"
+                justifyContent={"center"}
+                display="flex"
+                alignItems="center"
+                boxShadow={"md"}
+                mb="3rem"
+                borderRadius={"md"}
+                overflow={"hidden"}
+                position="relative"
+                backgroundColor="white"
+                columnGap={"20px"}
+              >
+                <Box
+                  display={"flex"}
+                  flexDirection="column"
+                  justifyContent={"center"}
+                  alignItems="center"
+                  h="100%"
+                  w="360px"
+                  pl="20px"
+                >
+                  <Text
+                    as="h3"
+                    fontFamily={"Helvetica"}
+                    fontWeight={"semibold"}
+                    fontSize="4xl"
+                    lineHeight={"normal"}
+                    mb="1rem"
+                  >
                     {DatosActions.promo_title}
                   </Text>
-                  <Text fontSize="md">{DatosActions.promo_description}</Text>
-                  <Text>{DatosActions.promo_cupon}</Text>
-                  <Text>{DatosActions.promo_conditions}</Text>
-                </Box> */}
-            {/* <Box w="100%" h="auto">
-              <Img src={DatosActions.promo_url_picture} />
-            </Box> */}
+                  <Text
+                    fontSize="2xl"
+                    fontWeight={"light"}
+                    fontFamily={"Helvetica"}
+                    mb="1rem"
+                    textAlign={"center"}
+                    lineHeight="normal"
+                  >
+                    {DatosActions.promo_description}
+                  </Text>
+                  <Text
+                    fontWeight={"bold"}
+                    fontSize="3xl"
+                    fontFamily={"Helvetica"}
+                    lineHeight="normal"
+                    mb="1rem"
+                  >
+                    {DatosActions.promo_cupon}
+                  </Text>
+
+                  <Button colorScheme="brand" minWidth={"200px"} mb="3rem">
+                    Buy Now
+                  </Button>
+                  <Text
+                    fontSize="sm"
+                    fontFamily={"Helvetica"}
+                    textAlign="center"
+                  >
+                    "{DatosActions.promo_conditions}"
+                  </Text>
+                </Box>
+                <Box w="420px" h="100%">
+                  <Img
+                    src={DatosActions.promo_url_picture}
+                    objectFit="cover"
+                    height="100%"
+                  />
+                </Box>
+              </Box>
+            )}
             <Select placeholder="Select option" onChange={handleChangueSelect}>
               <option value="1">Template 1</option>
               <option value="2">Template 2</option>

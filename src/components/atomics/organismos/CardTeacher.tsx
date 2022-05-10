@@ -125,7 +125,6 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                   <Button
                     alignSelf={"center"}
                     size={"md"}
-                    bg="brand.900"
                     colorScheme="brand"
                     onClick={() => Dropdown(index)}
                     alignItems="center"
@@ -155,8 +154,7 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                           alignSelf={"flex-end"}
                           justifySelf={"flex-end"}
                           size={"sm"}
-                          colorScheme="blue"
-                          bg="blue.500"
+                          colorScheme="brand"
                           mr="20px"
                           onClick={() => handleClick(item.id)}
                         >
@@ -166,8 +164,7 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                           alignSelf={"flex-end"}
                           justifySelf={"flex-end"}
                           size={"sm"}
-                          bg="blue.500"
-                          colorScheme="blue"
+                          colorScheme="brand"
                           mr="20px"
                           onClick={() => {
                             handleSelect(item.id, item.name, item.imgUrl);
@@ -180,8 +177,7 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                           alignSelf={"flex-end"}
                           justifySelf={"flex-end"}
                           size={"sm"}
-                          bg="blue.500"
-                          colorScheme="blue"
+                          colorScheme="brand"
                           mr="20px"
                           onClick={() => {
                             handleSelect(item.id, item.name, item.imgUrl);
@@ -195,8 +191,7 @@ export const CardTeacherOrganismo: FC<IPropsCard> = ({
                           alignSelf={"flex-end"}
                           justifySelf={"flex-end"}
                           size={"sm"}
-                          bg="blue.500"
-                          colorScheme="blue"
+                          colorScheme="brand"
                           mr="20px"
                           onClick={() => {
                             handleSelect(item.id, item.name, item.imgUrl);
