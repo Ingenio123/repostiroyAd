@@ -52,6 +52,7 @@ export const TablePromo = () => {
   const [listPromo, setListPromo] = usePromoListState();
   //
   const promoVM = listPromo.map((promoEntity) => new PromoVm(promoEntity));
+  // console.log(promoVM);
   //
   const toast = useToast();
   // const { isOpen, onClose, onOpen } = useDisclosure();
@@ -61,7 +62,7 @@ export const TablePromo = () => {
     const fetchData = async () => {
       try {
         let res = await di.promo.getPromos();
-        console.log(res);
+
         setListPromo(res);
         return res;
       } catch (err) {
@@ -117,7 +118,8 @@ export const TablePromo = () => {
       }
     );
     let data = await response.json();
-    console.log(data);
+    handleModal();
+    // console.log(data);
   };
 
   return (
@@ -145,7 +147,7 @@ export const TablePromo = () => {
                 </Td>
                 <Td>{item.promo_code}</Td>
                 <Td>
-                  {false ? (
+                  {item.promo_active ? (
                     <Tag size="sm" colorScheme="green">
                       Active
                     </Tag>
