@@ -6,17 +6,21 @@ import App from "./App";
 import theme from "./theme";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import Login from "./screens/Login";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import URI from "./envConfig";
+const client = new ApolloClient({
+  uri: URI.apiGraphql,
+  cache: new InMemoryCache(),
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <RecoilRoot>
         <ChakraProvider theme={theme}>
-          <App />
-          <Switch>
-            <Route exact path="/login" component={Login}></Route>
-          </Switch>
+          <ApolloProvider client={client}>
+            <App />
+          </ApolloProvider>
         </ChakraProvider>
       </RecoilRoot>
     </BrowserRouter>

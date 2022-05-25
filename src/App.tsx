@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreateTeacher } from "./screens/Admin/CreateTeacher";
 import { CreateReviews } from "./screens/Admin/CreateReviews";
 import { CreatePromoPages } from "./screens/Admin/CreatePromo";
-
+import AddLessonsPage from "./screens/Admin/AddLessons";
 //
 const App: FC = () => {
   return (
@@ -24,10 +24,18 @@ const App: FC = () => {
             component={Admin}
             isAuthenticated={true}
           />
+
           <PrivateRoute
             exact
             path="/admin/teacher"
             component={AddTeacher}
+            isAuthenticated={true}
+          />
+          {/* Add */}
+          <PrivateRoute
+            exact
+            path="/admin/add/lessons"
+            component={AddLessonsPage}
             isAuthenticated={true}
           />
           {/* update */}

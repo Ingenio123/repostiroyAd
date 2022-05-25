@@ -10,13 +10,18 @@ import {
   Stack,
   useColorMode,
   Image,
+  MenuList,
+  MenuItem,
+  MenuGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
 import { BiSun, BiMoon } from "react-icons/bi";
 import LogoIngenio from "../../assets/images/IngenioLanguages.svg";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 
 const Nav = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const history = useHistory();
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
@@ -77,23 +82,24 @@ const Nav = () => {
             >
               Course Content
             </Link>
-            <Link
-              rounded={"md"}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              px="2"
-              lineHeight="normal"
-              fontWeight="medium"
-              _hover={{
-                textDecoration: "none",
-                bg: useColorModeValue("gray.200", "gray.700"),
-              }}
-              as={RouterLink}
-              to="/admin/create/cuponcode"
-            >
-              Students
-            </Link>
+
+            <Menu>
+              <MenuButton as={Button} cursor={"pointer"} minW={0}>
+                Student
+              </MenuButton>
+              <MenuList>
+                <MenuGroup title="Lessons">
+                  <MenuItem onClick={() => history.push("/admin/add/lessons")}>
+                    Add lesonss
+                  </MenuItem>
+                  <MenuItem>Extend Expires Date</MenuItem>
+                </MenuGroup>
+                <MenuDivider />
+                <MenuGroup title="History">
+                  <MenuItem>Summay and packages</MenuItem>
+                </MenuGroup>
+              </MenuList>
+            </Menu>
             <Link
               rounded={"md"}
               display="flex"
