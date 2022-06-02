@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql,useMutation } from "@apollo/client";
 
 const STUDENT_QUERY = gql`
   {
@@ -8,6 +8,16 @@ const STUDENT_QUERY = gql`
     }
   }
 `;
+const ADD_LESSON  =  gql`
+  {
+    mutation 
+  }
+`
+
 export const useGetStudents = () => {
   return useQuery(STUDENT_QUERY);
 };
+
+export const  useAddLessons = () => {
+  return useMutation(ADD_LESSON);
+}

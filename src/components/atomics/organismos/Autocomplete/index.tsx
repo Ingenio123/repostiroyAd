@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCombobox } from "downshift";
 import {
   Input,
   List,
   ListItem,
   Flex,
-  Text,
-  IconButton,
-  ListProps,
   forwardRef,
-  InputProps,
+  ListProps,
   ListItemProps,
 } from "@chakra-ui/react";
 
@@ -20,22 +17,13 @@ interface ListItemLiProps extends ListItemProps {
   itemIndex: number;
   highlightedIndex: number;
 }
-
-const ComboboxInput = forwardRef<InputProps, "input">(({ ...props }, ref) => {
+const ComboboxInput = forwardRef(({ ...props }, ref) => {
   return <Input {...props} ref={ref} />;
 });
 
 const ComboboxList = forwardRef<ComboListProps, "ul">(
-  ({ display, isOpen, ...props }, ref) => {
-    return (
-      <List
-        as="ul"
-        display={isOpen ? "" : "none"}
-        py={2}
-        {...props}
-        ref={ref}
-      />
-    );
+  ({ isOpen, display, ...props }, ref) => {
+    return <List display={isOpen ? "" : "none"} py={2} {...props} ref={ref} />;
   }
 );
 
@@ -56,9 +44,12 @@ const ComboboxItem = forwardRef<ListItemLiProps, "li">(
     );
   }
 );
-
-const items = ["Seattle", "San Francisco", "Springfield", "New York", "Boston"];
-export default function Combobox() {
+// const items = ["Seattle", "San Francisco", "Springfield", "New York", "Boston"];
+interface Props {
+  items: any[];
+  handleSelect: (item: string) => void;
+}
+export default function Combobox({ items, handleSelect }: Props) {
   const [inputItems, setInputItems] = useState(items);
   const {
     isOpen,
@@ -74,31 +65,24 @@ export default function Combobox() {
     items: inputItems,
     onInputValueChange: ({ inputValue }) => {
       setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue.toLowerCase())
-        )
+        items.filter((item) => !inputValue || item.includes(inputValue))
       );
     },
   });
+  useEffect(() => {
+    if (inputItems.length > 1) return handleSelect("");
+    handleSelect(inputItems[0]);
+    return () => {};
+  }, [inputItems]);
+
   return (
-    <Flex direction="column" align="center">
-      <Text as="label" fontSize="lg" {...getLabelProps()}>
-        Choose a city
-      </Text>
+    <Flex>
       <Flex {...getComboboxProps()} direction="column" flex="1 1 auto">
-        <Flex direction="row" alignItems="baseline">
+        <Flex direction="row">
           <ComboboxInput
             {...getInputProps()}
             placeholder="Search..."
             flex="0 0 auto"
-            width={500}
-            mt={3}
-          />
-          <IconButton
-            {...getToggleButtonProps()}
-            aria-label={"toggle menu"}
-            variantColor={isOpen ? "gray" : "teal"}
-            icon={`arrow-${isOpen ? "up" : "down"}`}
           />
         </Flex>
         <ComboboxList
