@@ -1,4 +1,4 @@
-import { useQuery, gql,useMutation } from "@apollo/client";
+import { useQuery, gql, useLazyQuery } from "@apollo/client";
 
 const STUDENT_QUERY = gql`
   {
@@ -8,16 +8,23 @@ const STUDENT_QUERY = gql`
     }
   }
 `;
-const ADD_LESSON  =  gql`
-  {
-    mutation 
+const STUDENT_ONE_QUERY = gql`
+  query studentOne($email: String!) {
+    studentOne(email: $email) {
+      courses {
+        lesson
+        idiom
+        kids
+        lessonTotal
+      }
+    }
   }
-`
+`;
 
 export const useGetStudents = () => {
   return useQuery(STUDENT_QUERY);
 };
 
-export const  useAddLessons = () => {
-  return useMutation(ADD_LESSON);
-}
+export const useGetOneStudent = () => {
+  return useLazyQuery(STUDENT_ONE_QUERY);
+};
