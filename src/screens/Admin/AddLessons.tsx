@@ -1,8 +1,9 @@
 import Combobox from "../../components/atomics/organismos/Autocomplete";
 import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { useGetStudents, useGetOneStudent } from "../../hooks/useQuery";
-import { useAddLesson } from "../../hooks/useMutation";
+import { useAddLesson, useAddNewExpiredPackage } from "../../hooks/useMutation";
 import { TableStudentLessons } from "../../components/atomics/moleculas/TableStudentLessons";
+import DatePickerSingle from "../../components/atomics/atomo/DatePicker/datepickerSingle";
 import {
   Box,
   FormControl,
@@ -23,10 +24,16 @@ const AddLessons = () => {
       loading: LoadingGetOneStudent,
     },
   ] = useGetOneStudent();
+  const [
+    addNewDate,
+    { loading: LoadingaddNewDate, data: DateExpires, error: ErrorExpiresDate },
+  ] = useAddNewExpiredPackage();
 
   const [ItemState, setItemState] = useState([]);
   const [ItemSelect, setItemSelect] = useState<string>("");
   const [AddClassNumber, setAddClassNumber] = useState<number>(0);
+  const [CheckOne, setCheckOne] = useState<string | null>(null);
+  const [newDate, setNewDate] = useState<Date>(new Date());
 
   useEffect(() => {
     if (data?.student) {
@@ -50,14 +57,26 @@ const AddLessons = () => {
     let numero: number = parseInt(e.target.value);
     setAddClassNumber(numero);
   };
-
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    let index: string = e.target.value;
+    if (CheckOne === index) return setCheckOne(null);
+    return setCheckOne(index);
+  };
   const SendAdd = () => {
     addLessons({
       variables: {
         email: "jlzyjose@gmail.com", // ItemSelect
-        idiom: "English",
-        kids: false,
+        idPackage: CheckOne,
         numClassAdd: AddClassNumber,
+      },
+    });
+  };
+  const addNewDateExpires = () => {
+    addNewDate({
+      variables: {
+        email: "jlzyjose@gmail.com",
+        dateExpires: newDate,
+        idPackage: CheckOne,
       },
     });
   };
@@ -75,6 +94,8 @@ const AddLessons = () => {
             <TableStudentLessons
               dataHead={{ language: "Language", lessonTotal: "Total lessons" }}
               data={DataOneStundet.studentOne.courses}
+              handleCheck={handleCheck}
+              CheckOne={CheckOne}
             />
           )}
           <Box>
@@ -96,10 +117,18 @@ const AddLessons = () => {
                 <Box>
                   <FormControl>
                     <FormLabel htmlFor="email">Extend expire date</FormLabel>
-                    <Input type="text" />
+                    <DatePickerSingle
+                      name="date-picker"
+                      DatePicker={newDate}
+                      setDatePicker={setNewDate}
+                    />
                   </FormControl>
                   <FormControl mt="2">
-                    <Button colorScheme={"blue"} type="submit">
+                    <Button
+                      colorScheme={"blue"}
+                      type="button"
+                      onClick={addNewDateExpires}
+                    >
                       Submit
                     </Button>
                   </FormControl>

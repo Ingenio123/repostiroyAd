@@ -16,6 +16,8 @@ const STUDENT_ONE_QUERY = gql`
         idiom
         kids
         lessonTotal
+        _id
+        expiresCours
       }
     }
   }

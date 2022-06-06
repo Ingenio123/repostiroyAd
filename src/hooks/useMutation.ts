@@ -2,15 +2,27 @@ import { gql, useMutation } from "@apollo/client";
 const ADD_LESSON = gql`
   mutation addLessonOneStudent(
     $email: String!
-    $idiom: String!
-    $kids: Boolean!
+    $idPackage: String!
     $numClassAdd: Int!
   ) {
     addLessonOneStudent(
       email: $email
-      idiom: $idiom
-      kids: $kids
+      idPackage: $idPackage
       numClassAdd: $numClassAdd
+    )
+  }
+`;
+
+const ADD_DATE_EXPIRES = gql`
+  mutation addNewDateExpires(
+    $email: String!
+    $dateExpires: Date!
+    $idPackage: String!
+  ) {
+    addNewDateExpires(
+      email: $email
+      dateExpires: $dateExpires
+      idPackage: $idPackage
     )
   }
 `;
@@ -21,4 +33,8 @@ export const useAddLesson = () => {
     addLessons,
     dataUseMutation: data,
   };
+};
+
+export const useAddNewExpiredPackage = () => {
+  return useMutation(ADD_DATE_EXPIRES);
 };

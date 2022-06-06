@@ -27,21 +27,53 @@ type DataArray = {
   idiom: string;
   lessonTotal: number;
   kids: boolean;
+  _id: string;
+  expiresCours: Date;
 };
 
 interface IProps {
   dataHead: TableHeadeData;
   data: DataArray[];
+  CheckOne: string | null;
+  handleCheck: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TableStudentLessons = ({ dataHead, data }: IProps) => {
+export const TableStudentLessons = ({
+  dataHead,
+  data,
+  handleCheck,
+  CheckOne,
+}: IProps) => {
   const { language, lessonTotal } = dataHead;
-  const [CheckOne, setCheckOne] = useState<number | null>(null);
-  //   const { handleCheck, CheckOne } = CustomHookCheck();
-  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    let index: number = parseInt(e.target.value);
-    if (CheckOne === index) return setCheckOne(null);
-    return setCheckOne(index);
+  const FormatDate = (dateExpires: Date) => {
+    // console.log(d);
+    // console.log(d.getFullYear());
+    const d = new Date(dateExpires);
+    // console.log(d);
+    const year = d.getFullYear(); // 2019
+    const date = d.getDate();
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dayIndex = d.getDay();
+    const dayName = days[d.getDay()]; // Thu
+    const monthIndex = d.getMonth();
+    const monthName = months[monthIndex];
+
+    const formatted = `${dayName}, ${date} ${monthName} ${year}`;
+    return formatted;
   };
   return (
     <Table width="100%" size="sm" mt="2rem">
@@ -51,6 +83,7 @@ export const TableStudentLessons = ({ dataHead, data }: IProps) => {
           <Th>Id</Th>
           <Th>{language}</Th>
           <Th>{lessonTotal}</Th>
+          <Th>Expires Date</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -61,8 +94,8 @@ export const TableStudentLessons = ({ dataHead, data }: IProps) => {
                 size="md"
                 colorScheme="blue"
                 onChange={handleCheck}
-                value={index}
-                isChecked={CheckOne === index ? true : false}
+                value={item._id}
+                isChecked={CheckOne === item._id ? true : false}
               />
             </Td>
             <Td>{index}</Td>
@@ -70,6 +103,7 @@ export const TableStudentLessons = ({ dataHead, data }: IProps) => {
               {item.idiom} {item.kids && "Kids"}
             </Td>
             <Td>{item.lessonTotal}</Td>
+            <Td>{FormatDate(item.expiresCours)}</Td>
           </Tr>
         ))}
       </Tbody>
