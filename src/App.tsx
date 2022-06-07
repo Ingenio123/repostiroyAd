@@ -11,6 +11,8 @@ import { CreateTeacher } from "./screens/Admin/CreateTeacher";
 import { CreateReviews } from "./screens/Admin/CreateReviews";
 import { CreatePromoPages } from "./screens/Admin/CreatePromo";
 import AddLessonsPage from "./screens/Admin/AddLessons";
+import { CreateTemary } from "./screens/Admin/CreateTemary";
+import CreateStudent from "./screens/Admin/CreateStudent";
 //
 const App: FC = () => {
   return (
@@ -46,6 +48,18 @@ const App: FC = () => {
             isAuthenticated={true}
           />
           {/* create */}
+          <PrivateRoute
+            exact
+            path="/admin/create/temary"
+            component={CreateTemary}
+            isAuthenticated={true}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/create/student"
+            component={CreateStudent}
+            isAuthenticated={true}
+          />
           <PrivateRoute
             exact
             path="/admin/create/cuponcode"

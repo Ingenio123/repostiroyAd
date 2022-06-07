@@ -1,24 +1,37 @@
-import { forwardRef } from "react";
-import { Box, Text, Flex, Textarea } from "@chakra-ui/react";
+import { forwardRef, ReactNode } from "react";
+import { Box, Flex, Text, Select } from "@chakra-ui/react";
 
-type TextAreaFieldProps = {
+type OptionsArray = {
+  value: string;
+  label: string;
+};
+
+type SelectFieldProps = {
   label: string;
   placeholder: string;
-  type?: string | "string";
   gridArea?: { [key: string]: string };
+  options: OptionsArray[];
   errors: { message: string } | undefined;
   [prop: string]: unknown;
 };
 
-const TextAreaField = forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
+const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
   (props, ref) => {
-    const { label, placeholder, type = "text", gridArea, ...other } = props;
-
+    const {
+      errors,
+      label,
+      placeholder,
+      step,
+      type,
+      children,
+      gridArea,
+      options,
+      ...other
+    } = props;
     let errorMessage;
     if (props.errors) {
       errorMessage = props.errors.message;
     }
-
     return (
       <Box gridArea={gridArea}>
         <Flex justify="space-between">
@@ -28,7 +41,7 @@ const TextAreaField = forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
             fontWeight="medium"
             htmlFor={label}
             display="inline-block"
-            my="2"
+            mb={2}
             color={props["errors"] && "inputError"}
           >
             {label}
@@ -44,19 +57,20 @@ const TextAreaField = forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
             </Text>
           )}
         </Flex>
-        <Textarea
-          placeholder={placeholder}
+        <Select
           ref={ref}
-          border="1px solid"
+          {...other}
+          placeholder={placeholder}
           borderColor={props["errors"] ? "inputError" : "inputBorder"}
           id={label}
-          {...other}
-        />
+        >
+          {options.map((item: OptionsArray) => (
+            <option value={item.value}>{item.label}</option>
+          ))}
+        </Select>
       </Box>
     );
   }
 );
-
-TextAreaField.displayName = "TextAreaField";
-
-export default TextAreaField;
+SelectField.displayName = "SelectField";
+export default SelectField;

@@ -27,6 +27,12 @@ const ADD_DATE_EXPIRES = gql`
   }
 `;
 
+const ADD_TEMARY = gql`
+  mutation createTemary($nameLevel: String!, $content_param: String!) {
+    createTemary(nameLevel: $nameLevel, content_param: $content_param)
+  }
+`;
+
 export const useAddLesson = () => {
   const [addLessons, { data }] = useMutation(ADD_LESSON);
   return {
@@ -37,4 +43,8 @@ export const useAddLesson = () => {
 
 export const useAddNewExpiredPackage = () => {
   return useMutation(ADD_DATE_EXPIRES);
+};
+
+export const useAddNewTemary = () => {
+  return useMutation(ADD_TEMARY);
 };

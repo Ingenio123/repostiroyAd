@@ -65,7 +65,7 @@ const AddLessons = () => {
   const SendAdd = () => {
     addLessons({
       variables: {
-        email: "jlzyjose@gmail.com", // ItemSelect
+        email: ItemSelect, // ItemSelect
         idPackage: CheckOne,
         numClassAdd: AddClassNumber,
       },
@@ -74,7 +74,7 @@ const AddLessons = () => {
   const addNewDateExpires = () => {
     addNewDate({
       variables: {
-        email: "jlzyjose@gmail.com",
+        email: ItemSelect,
         dateExpires: newDate,
         idPackage: CheckOne,
       },

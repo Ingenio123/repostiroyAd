@@ -115,7 +115,7 @@ export const FormReviews = () => {
             errors={errors.name_user}
             label={"Student's name"}
             placeholder="Jhon Doe"
-            type="string"
+            type="text"
           />
           <FormField
             {...register("languages_is_learning", {
@@ -125,7 +125,7 @@ export const FormReviews = () => {
             errors={errors.languages_is_learning}
             label={"Language"}
             placeholder="English"
-            type="string"
+            type="text"
           />
           <TextAreaField
             {...register("description", {
@@ -134,7 +134,7 @@ export const FormReviews = () => {
             errors={errors.description}
             label="Review"
             placeholder="lorem  ipsum!"
-            type="string"
+            type="text"
           />
           <Button
             display="block"

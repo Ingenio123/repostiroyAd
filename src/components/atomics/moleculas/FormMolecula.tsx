@@ -4,7 +4,7 @@ import { BoxAtom } from "../atomo/Card";
 // import {}  from '../atomo/'
 interface IProps extends HTMLAttributes<HTMLFormElement> {
   children?: ReactNode;
-  handleSubmit: any;
+  handleSubmit?: any;
   width?: string;
 }
 export const FormMoleculaO = ({ handleSubmit, children, ...props }: IProps) => {

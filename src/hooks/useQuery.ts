@@ -22,6 +22,13 @@ const STUDENT_ONE_QUERY = gql`
     }
   }
 `;
+const USERS_QUERY = gql`
+  {
+    users {
+      email
+    }
+  }
+`;
 
 export const useGetStudents = () => {
   return useQuery(STUDENT_QUERY);
@@ -29,4 +36,8 @@ export const useGetStudents = () => {
 
 export const useGetOneStudent = () => {
   return useLazyQuery(STUDENT_ONE_QUERY);
+};
+
+export const useGetUsers = () => {
+  return useQuery(USERS_QUERY);
 };

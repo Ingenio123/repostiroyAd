@@ -78,7 +78,7 @@ const Nav = () => {
                 bg: useColorModeValue("gray.200", "gray.700"),
               }}
               as={RouterLink}
-              to="/admin/create/cuponcode"
+              to="/admin/create/temary"
             >
               Course Content
             </Link>
@@ -92,7 +92,11 @@ const Nav = () => {
                   <MenuItem onClick={() => history.push("/admin/add/lessons")}>
                     Add lesonss
                   </MenuItem>
-                  <MenuItem>Extend Expires Date</MenuItem>
+                  <MenuItem
+                    onClick={() => history.push("/admin/create/student")}
+                  >
+                    New Student
+                  </MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title="History">
