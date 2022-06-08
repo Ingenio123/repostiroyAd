@@ -1,4 +1,4 @@
-import { Input, Box, Flex, Text } from "@chakra-ui/react";
+import { Checkbox, Box, Flex, Text } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
 type FormFieldProps = {
@@ -21,7 +21,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
 
   return (
     <Box gridArea={gridArea}>
-      <Flex justify="space-between">
+      <Flex justify="center">
         <Box
           as="label"
           fontSize="1rem"
@@ -39,15 +39,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>((props, ref) => {
           </Text>
         )}
       </Flex>
-      <Input
-        ref={ref}
-        {...other}
-        type={type}
-        placeholder={placeholder}
-        borderColor={props["errors"] ? "inputError" : "inputBorder"}
-        id={label}
-        step={step}
-      />
+      <Checkbox ref={ref} {...other} type={"checkbox"} id={label} />
     </Box>
   );
 });

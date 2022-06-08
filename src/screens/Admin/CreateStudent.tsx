@@ -1,7 +1,8 @@
+import { CreateStudentTemplate } from "../../components/atomics/template/CreateStudent";
 const CreateStudent = () => {
   return (
     <>
-      <h2>Create student</h2>
+      <CreateStudentTemplate />
     </>
   );
 };

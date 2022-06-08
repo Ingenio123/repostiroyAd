@@ -33,6 +33,26 @@ const ADD_TEMARY = gql`
   }
 `;
 
+const ADD_STUDENT = gql`
+  mutation addNewStudent(
+    $email: String!
+    $lesson: String!
+    $months: String!
+    $time: String!
+    $idiom: String!
+    $kids: Boolean!
+  ) {
+    addNewStudent(
+      email: $email
+      lesson: $lesson
+      months: $months
+      time: $time
+      idiom: $idiom
+      kids: $kids
+    )
+  }
+`;
+
 export const useAddLesson = () => {
   const [addLessons, { data }] = useMutation(ADD_LESSON);
   return {
@@ -47,4 +67,8 @@ export const useAddNewExpiredPackage = () => {
 
 export const useAddNewTemary = () => {
   return useMutation(ADD_TEMARY);
+};
+
+export const useAddNewStudent = () => {
+  return useMutation(ADD_STUDENT);
 };
