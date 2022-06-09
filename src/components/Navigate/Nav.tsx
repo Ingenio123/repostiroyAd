@@ -92,6 +92,7 @@ const Nav = () => {
                   <MenuItem onClick={() => history.push("/admin/add/lessons")}>
                     Add lesonss
                   </MenuItem>
+                  
                   <MenuItem
                     onClick={() => history.push("/admin/create/student")}
                   >

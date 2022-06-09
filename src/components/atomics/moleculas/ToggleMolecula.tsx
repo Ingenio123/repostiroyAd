@@ -27,11 +27,14 @@ export const Toggle = forwardRef<HTMLInputElement, ToogleProps>(
         display="flex"
         justifyContent={"center"}
         gap="1rem"
+        mt="4"
       >
-        <CustomRadio {...getRadioProps({ value: "false" })}>
+        <CustomRadio {...getRadioProps({ value: "false" })} color="brand">
           Regular
         </CustomRadio>
-        <CustomRadio {...getRadioProps({ value: "true" })}>Kids</CustomRadio>
+        <CustomRadio {...getRadioProps({ value: "true" })} color="brand">
+          Kids
+        </CustomRadio>
       </Box>
     );
   }

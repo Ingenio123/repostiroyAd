@@ -4,6 +4,7 @@ import { useGetStudents, useGetOneStudent } from "../../hooks/useQuery";
 import { useAddLesson, useAddNewExpiredPackage } from "../../hooks/useMutation";
 import { TableStudentLessons } from "../../components/atomics/moleculas/TableStudentLessons";
 import DatePickerSingle from "../../components/atomics/atomo/DatePicker/datepickerSingle";
+import AddPackageForm from "../../components/atomics/organismos/AddPackage";
 import {
   Box,
   FormControl,
@@ -12,7 +13,9 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
+import { useAddNewPackage } from "../../hooks/useAddNewPackage";
 
+import { AddNewPackageProvider } from "../../context/AddNewPackageContext";
 const AddLessons = () => {
   const { data, loading, error } = useGetStudents();
   const { addLessons, dataUseMutation } = useAddLesson();
@@ -50,7 +53,9 @@ const AddLessons = () => {
 
   const handleSelect = (item: string) => {
     setItemSelect(item);
-    if (item !== "") return getOneStudent({ variables: { email: item } });
+    if (item !== "") {
+      return getOneStudent({ variables: { email: item } });
+    }
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.value) setAddClassNumber(0);
@@ -80,9 +85,10 @@ const AddLessons = () => {
       },
     });
   };
+
   return (
-    <>
-      <Stack direction={["column", "row"]}>
+    <AddNewPackageProvider>
+      <Stack direction={["column", "row"]} spacing="8">
         <Box width="2xl">
           <FormControl>
             <FormLabel htmlFor="email">Search Student by email</FormLabel>
@@ -91,12 +97,17 @@ const AddLessons = () => {
             )}
           </FormControl>
           {!LoadingGetOneStudent && DataOneStundet && (
-            <TableStudentLessons
-              dataHead={{ language: "Language", lessonTotal: "Total lessons" }}
-              data={DataOneStundet.studentOne.courses}
-              handleCheck={handleCheck}
-              CheckOne={CheckOne}
-            />
+            <>
+              <TableStudentLessons
+                dataHead={{
+                  language: "Language",
+                  lessonTotal: "Total lessons",
+                }}
+                data={DataOneStundet.studentOne.courses}
+                handleCheck={handleCheck}
+                CheckOne={CheckOne}
+              />
+            </>
           )}
           <Box>
             {ItemSelect !== "" && (
@@ -110,7 +121,7 @@ const AddLessons = () => {
                   />
                 </FormControl>
                 <FormControl mt="2">
-                  <Button colorScheme={"blue"} type="button" onClick={SendAdd}>
+                  <Button colorScheme={"brand"} type="button" onClick={SendAdd}>
                     Submit
                   </Button>
                 </FormControl>
@@ -125,7 +136,7 @@ const AddLessons = () => {
                   </FormControl>
                   <FormControl mt="2">
                     <Button
-                      colorScheme={"blue"}
+                      colorScheme={"brand"}
                       type="button"
                       onClick={addNewDateExpires}
                     >
@@ -138,8 +149,9 @@ const AddLessons = () => {
           </Box>
         </Box>
         {/*  */}
+        <AddPackageForm email={ItemSelect} />
       </Stack>
-    </>
+    </AddNewPackageProvider>
   );
 };
 export default AddLessons;

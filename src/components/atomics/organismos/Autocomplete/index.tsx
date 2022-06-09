@@ -9,6 +9,7 @@ import {
   ListProps,
   ListItemProps,
 } from "@chakra-ui/react";
+import { useAddNewPackage } from "../../../../hooks/useAddNewPackage";
 
 interface ComboListProps extends ListProps {
   isOpen: "none" | null;
@@ -50,6 +51,7 @@ interface Props {
   handleSelect: (item: string) => void;
 }
 export default function Combobox({ items, handleSelect }: Props) {
+  const { handleMinusMorePackage } = useAddNewPackage();
   const [inputItems, setInputItems] = useState(items);
   const {
     isOpen,
@@ -72,6 +74,7 @@ export default function Combobox({ items, handleSelect }: Props) {
   useEffect(() => {
     if (inputItems.length > 1) return handleSelect("");
     handleSelect(inputItems[0]);
+    handleMinusMorePackage();
     return () => {};
   }, [inputItems]);
 

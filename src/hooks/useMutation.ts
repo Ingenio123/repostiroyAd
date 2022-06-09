@@ -53,6 +53,35 @@ const ADD_STUDENT = gql`
   }
 `;
 
+const ADD_NEW_PACKAGE = gql`
+  mutation AddNewPackageToStudent(
+    $email: String!
+    $lesson: String!
+    $months: String!
+    $time: String!
+    $idiom: String!
+    $kids: Boolean!
+  ) {
+    AddNewPackageToStudent(
+      email: $email
+      lesson: $lesson
+      months: $months
+      time: $time
+      idiom: $idiom
+      kids: $kids
+    )
+  }
+`;
+
+type AddNewPackageTypes = {
+  email: string;
+  lesson: string;
+  months: string;
+  time: string;
+  idiom: string;
+  kids: string;
+};
+
 export const useAddLesson = () => {
   const [addLessons, { data }] = useMutation(ADD_LESSON);
   return {
@@ -71,4 +100,8 @@ export const useAddNewTemary = () => {
 
 export const useAddNewStudent = () => {
   return useMutation(ADD_STUDENT);
+};
+
+export const useAddNewPackge = () => {
+  return useMutation(ADD_NEW_PACKAGE);
 };

@@ -1,22 +1,17 @@
-import { Table, Thead, Tr, Td, Tbody, Checkbox, Th } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tr,
+  Td,
+  Tbody,
+  Checkbox,
+  Th,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
-
-const CustomHookCheck = () => {
-  const [CheckOne, setCheckOne] = useState<number | null>(null);
-
-  const handleCheck = (index: number) => {
-    console.log(index);
-    if (index === CheckOne) {
-      return setCheckOne(null);
-    }
-    return setCheckOne(index);
-  };
-
-  return {
-    handleCheck,
-    CheckOne,
-  };
-};
+import { CgMathPlus } from "react-icons/cg";
+import { useAddNewPackage } from "../../../hooks/useAddNewPackage";
 
 type TableHeadeData = {
   language: string;
@@ -45,6 +40,7 @@ export const TableStudentLessons = ({
   CheckOne,
 }: IProps) => {
   const { language, lessonTotal } = dataHead;
+  const { handleMorePackage } = useAddNewPackage();
   const FormatDate = (dateExpires: Date) => {
     // console.log(d);
     // console.log(d.getFullYear());
@@ -71,42 +67,56 @@ export const TableStudentLessons = ({
     const dayName = days[d.getDay()]; // Thu
     const monthIndex = d.getMonth();
     const monthName = months[monthIndex];
-
     const formatted = `${dayName}, ${date} ${monthName} ${year}`;
+
     return formatted;
   };
   return (
-    <Table width="100%" size="sm" mt="2rem">
-      <Thead>
-        <Tr>
-          <Th>Select</Th>
-          <Th>Id</Th>
-          <Th>{language}</Th>
-          <Th>{lessonTotal}</Th>
-          <Th>Expires Date</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {data.map((item: DataArray, index: number) => (
-          <Tr key={index}>
-            <Td>
-              <Checkbox
-                size="md"
-                colorScheme="blue"
-                onChange={handleCheck}
-                value={item._id}
-                isChecked={CheckOne === item._id ? true : false}
-              />
-            </Td>
-            <Td>{index}</Td>
-            <Td>
-              {item.idiom} {item.kids && "Kids"}
-            </Td>
-            <Td>{item.lessonTotal}</Td>
-            <Td>{FormatDate(item.expiresCours)}</Td>
+    <>
+      <Table width="100%" size="sm" mt="2rem">
+        <Thead>
+          <Tr>
+            <Th>Select</Th>
+            <Th>Id</Th>
+            <Th>{language}</Th>
+            <Th>{lessonTotal}</Th>
+            <Th>Expires Date</Th>
           </Tr>
-        ))}
-      </Tbody>
-    </Table>
+        </Thead>
+        <Tbody>
+          {data.map((item: DataArray, index: number) => (
+            <Tr key={index}>
+              <Td>
+                <Checkbox
+                  size="md"
+                  colorScheme="brand"
+                  onChange={handleCheck}
+                  value={item._id}
+                  isChecked={CheckOne === item._id ? true : false}
+                />
+              </Td>
+              <Td>{index}</Td>
+              <Td>
+                {item.idiom} {item.kids && "Kids"}
+              </Td>
+              <Td>{item.lessonTotal}</Td>
+              <Td>{FormatDate(item.expiresCours)}</Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      <Button
+        mt="3"
+        display={"flex"}
+        alignItems="center"
+        colorScheme={"brand"}
+        ml="auto"
+        onClick={handleMorePackage}
+        size="sm"
+      >
+        <Box as={CgMathPlus} display="inline-block" size="1.1em" />
+        Add package
+      </Button>
+    </>
   );
 };

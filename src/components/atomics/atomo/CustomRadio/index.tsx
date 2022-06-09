@@ -1,7 +1,11 @@
-import { forwardRef } from "react";
+import { forwardRef, ReactNode } from "react";
 import { useRadio, Button, Box } from "@chakra-ui/react";
-const CustomRadio = forwardRef<HTMLInputElement>(
-  ({ children, ...props }, ref) => {
+type Props = {
+  children: ReactNode;
+  color: string;
+};
+const CustomRadio = forwardRef<HTMLInputElement, Props>(
+  ({ children, color, ...props }, ref) => {
     const { state, getInputProps, getCheckboxProps } = useRadio(props);
     const input = getInputProps({ ref });
     const checkbox = getCheckboxProps();
@@ -13,7 +17,8 @@ const CustomRadio = forwardRef<HTMLInputElement>(
           as="div"
           {...checkbox}
           cursor="pointer"
-          colorScheme={state.isChecked ? "blue" : "gray"}
+          colorScheme={state.isChecked ? color : "gray"}
+          size="sm"
         >
           {children}
         </Button>

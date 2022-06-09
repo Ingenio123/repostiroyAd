@@ -87,14 +87,14 @@ export const FormNewStudentOrganismo = ({ email }: { email: string }) => {
             );
           })}
         </Box>
-        <Toggle control={control} name="kids" />
+        <Toggle control={control} defaultValue="false" name="kids" />
         <SelectField
           {...register("language", {
             required: "Fiel is required",
           })}
+          placeholder="Select language"
           label="Language"
           options={[
-            { value: "", label: "Select language" },
             { value: "English", label: "English" },
             { value: "French", label: "French" },
             { value: "Spanish", label: "Spanish" },
@@ -108,8 +108,8 @@ export const FormNewStudentOrganismo = ({ email }: { email: string }) => {
             required: "Fiel is required",
           })}
           label="Lessons per month"
+          placeholder="Select lessons"
           options={[
-            { value: "", label: "Select lessons" },
             { value: 1, label: "1 lesson" },
             { value: 4, label: "4 lessons" },
             { value: 8, label: "8 lessons" },
@@ -123,8 +123,8 @@ export const FormNewStudentOrganismo = ({ email }: { email: string }) => {
             required: "Fiel is required",
           })}
           label="Lessons length"
+          placeholder="Select length"
           options={[
-            { value: "", label: "Select length" },
             { value: "30", label: "30 minutes" },
             { value: "45", label: "45 minutes" },
             { value: "60", label: "60 minutes" },
