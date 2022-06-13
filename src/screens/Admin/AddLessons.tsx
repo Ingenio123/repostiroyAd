@@ -93,7 +93,11 @@ const AddLessons = () => {
           <FormControl>
             <FormLabel htmlFor="email">Search Student by email</FormLabel>
             {ItemState.length > 0 && (
-              <Combobox handleSelect={handleSelect} items={ItemState} />
+              <Combobox
+                handleSelect={handleSelect}
+                items={ItemState}
+                usarHandleMinus={true}
+              />
             )}
           </FormControl>
           {!LoadingGetOneStudent && DataOneStundet && (

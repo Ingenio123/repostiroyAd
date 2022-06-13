@@ -49,8 +49,13 @@ const ComboboxItem = forwardRef<ListItemLiProps, "li">(
 interface Props {
   items: any[];
   handleSelect: (item: string) => void;
+  usarHandleMinus?: boolean;
 }
-export default function Combobox({ items, handleSelect }: Props) {
+export default function Combobox({
+  items,
+  handleSelect,
+  usarHandleMinus,
+}: Props) {
   const { handleMinusMorePackage } = useAddNewPackage();
   const [inputItems, setInputItems] = useState(items);
   const {
@@ -74,7 +79,7 @@ export default function Combobox({ items, handleSelect }: Props) {
   useEffect(() => {
     if (inputItems.length > 1) return handleSelect("");
     handleSelect(inputItems[0]);
-    handleMinusMorePackage();
+    if (usarHandleMinus) handleMinusMorePackage();
     return () => {};
   }, [inputItems]);
 
