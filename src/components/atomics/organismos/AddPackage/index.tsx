@@ -43,7 +43,7 @@ const AddPackage = ({ email }: { email: string }) => {
     onChange: handlChange,
   });
   const onSubmit = async (data: UseForm) => {
-    console.log(data);
+    // console.log(data);
     let { group, kids, language, lesson, months, numberStudents, time } = data;
     if (kids == "true") {
       kids = true;
